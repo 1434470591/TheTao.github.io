@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        while (true) {
+            let randomNum = Math.floor(Math.random() * 100) + 1
+            let low = 1
+            let high = 100
+            while (true) {
+                let number = +prompt(`请输入${low}~${high}之间的数字`)
+                if (number < low || number > high) {
+                    continue
+                }
+                else {
+                    if (number < randomNum) {
+                        low = number + 1
+                    }
+                    else if (number > randomNum) {
+                        high = number - 1
+                    }
+                    else {
+                        break
+                    }
+                }
+            }
+            let end = +prompt(`数字炸弹是：${randomNum}!!!
+            继续游戏请按1
+            <br>结束游戏请按2
+            `)
+            if (end === 2) {
+                break
+            }
+        }
+    </script>
+</body>
+
+</html>
