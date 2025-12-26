@@ -1,0 +1,148 @@
+\begin{thebibliography}{10}
+
+\bibitem{cf-swintransformer}
+Jiaming Cheng, Wei Chen, Jialong Xu, Yiran Guo, Lun Li, and Bo~Ai,
+\newblock ``Swin transformer-based {CSI} feedback for massive {MIMO},''
+\newblock in {\em 23rd {IEEE} International Conference on Communication Technology, {ICCT} 2023, Wuxi, China, October 20-22, 2023}. 2023, pp. 809--814, {IEEE}.
+
+\bibitem{cp-cvcnn}
+Chi Wu, Xinping Yi, Yiming Zhu, Wenjin Wang, Li~You, and Xiqi Gao,
+\newblock ``Channel prediction in high-mobility massive {MIMO:} from spatio-temporal autoregression to deep learning,''
+\newblock {\em {IEEE} J. Sel. Areas Commun.}, vol. 39, no. 7, pp. 1915--1930, 2021.
+
+\bibitem{vit}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, Jakob Uszkoreit, and Neil Houlsby,
+\newblock ``An image is worth 16x16 words: Transformers for image recognition at scale,''
+\newblock in {\em 9th International Conference on Learning Representations, {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. 2021, OpenReview.net.
+
+\bibitem{cp-ar}
+Kareem~E. Baddour and Norman~C. Beaulieu,
+\newblock ``Autoregressive modeling for fading channel simulation,''
+\newblock {\em {IEEE} Trans. Wirel. Commun.}, vol. 4, no. 4, pp. 1650--1662, 2005.
+
+\bibitem{cp-kf}
+Hwanjin Kim, Sucheol Kim, Hyeongtaek Lee, Chulhee Jang, Yongyun Choi, and Junil Choi,
+\newblock ``Massive {MIMO} channel prediction: Kalman filtering vs. machine learning,''
+\newblock {\em {IEEE} Trans. Commun.}, vol. 69, no. 1, pp. 518--528, 2021.
+
+\bibitem{DBLP:books/cu/TV2005}
+David Tse and Pramod Viswanath,
+\newblock {\em Fundamentals of Wireless Communication},
+\newblock Cambridge University Press, 2005.
+
+\bibitem{cf-CEFnet}
+Jiajia Guo, Tong Chen, Shi Jin, Geoffrey~Ye Li, Xin Wang, and Xiaolin Hou,
+\newblock ``Deep learning for joint channel estimation and feedback in massive {MIMO} systems,''
+\newblock {\em Digit. Commun. Networks}, vol. 10, no. 1, pp. 83--93, 2024.
+
+\bibitem{cf-bi-ImCsiNet}
+Muhan Chen, Jiajia Guo, Chao{-}Kai Wen, Shi Jin, Geoffrey~Ye Li, and Ang Yang,
+\newblock ``Deep learning-based implicit {CSI} feedback in massive {MIMO},''
+\newblock {\em {IEEE} Trans. Commun.}, vol. 70, no. 2, pp. 935--950, 2022.
+
+\bibitem{detection}
+Pengxuan Gao, Disheng Xiao, Ruiheng Zou, and Kai Ying,
+\newblock ``A self-supervised {UAV} detection method based on channel state information,''
+\newblock in {\em 2025 {IEEE} International Conference on Acoustics, Speech and Signal Processing, {ICASSP} 2025, Hyderabad, India, April 6-11, 2025}. 2025, pp. 1--5, {IEEE}.
+
+\bibitem{ECT-Net}
+Yunwu Zhang, Shibao Li, Dongyang Li, Jinze Zhu, and Qishuai Guan,
+\newblock ``Transformer-based predictive beamforming for integrated sensing and communication in vehicular networks,''
+\newblock {\em {IEEE} Internet Things J.}, vol. 11, no. 11, pp. 20690--20705, 2024.
+
+\bibitem{cp-rnn-1}
+Jie Wang, Ying Ding, Shujie Bian, Yang Peng, Miao Liu, and Guan Gui,
+\newblock ``{UL-CSI} data driven deep learning for predicting {DL-CSI} in cellular {FDD} systems,''
+\newblock {\em {IEEE} Access}, vol. 7, pp. 96105--96112, 2019.
+
+\bibitem{cp-rnn-2}
+Lemayian~Joel Poncha and Jehad~M. Hamamreh,
+\newblock ``Recurrent neural network-based channel prediction in mmimo for enhanced performance in future wireless communication,''
+\newblock in {\em 2020 International Conference on UK-China Emerging Technologies, {UCET} 2020, Glasgow, United Kingdom, August 20-21, 2020}. 2020, pp. 1--4, {IEEE}.
+
+\bibitem{cp-cnn-1}
+Jie Wang, Ying Ding, Shujie Bian, Yang Peng, Miao Liu, and Guan Gui,
+\newblock ``{UL-CSI} data driven deep learning for predicting {DL-CSI} in cellular {FDD} systems,''
+\newblock {\em {IEEE} Access}, vol. 7, pp. 96105--96112, 2019.
+
+\bibitem{cp-cnn-2}
+Jingxiang Yang, Liyan Li, and Min{-}Jian Zhao,
+\newblock ``A blind {CSI} prediction method based on deep learning for {V2I} millimeter-wave channel,''
+\newblock in {\em 28th {IEEE} International Conference on Network Protocols, {ICNP} 2020, Madrid, Spain, October 13-16, 2020}. 2020, pp. 1--6, {IEEE}.
+
+\bibitem{cp-transformer}
+Hao Jiang, Mingyao Cui, Derrick Wing~Kwan Ng, and Linglong Dai,
+\newblock ``Accurate channel prediction based on transformer: Making mobility negligible,''
+\newblock {\em {IEEE} J. Sel. Areas Commun.}, vol. 40, no. 9, pp. 2717--2732, 2022.
+
+\bibitem{TEST}
+Chenxi Sun, Hongyan Li, Yaliang Li, and Shenda Hong,
+\newblock ``{TEST:} text prototype aligned embedding to activate llm's ability for time series,''
+\newblock in {\em The Twelfth International Conference on Learning Representations, {ICLR} 2024, Vienna, Austria, May 7-11, 2024}. 2024, OpenReview.net.
+
+\bibitem{gpt3}
+Tom~B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert{-}Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel~M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario Amodei,
+\newblock ``Language models are few-shot learners,''
+\newblock {\em CoRR}, vol. abs/2005.14165, 2020.
+
+\bibitem{LLM4CP}
+Boxun Liu, Xuanyu Liu, Shijian Gao, Xiang Cheng, and Liuqing Yang,
+\newblock ``{LLM4CP:} adapting large language models for channel prediction,''
+\newblock {\em J. Commun. Inf. Networks}, vol. 9, no. 2, pp. 113--125, 2024.
+
+\bibitem{LLM4CE}
+Yiming Cui, Jiajia Guo, Chao{-}Kai Wen, Shi Jin, and En~Tong,
+\newblock ``Exploring the potential of large language models for massive {MIMO} {CSI} feedback,''
+\newblock {\em CoRR}, vol. abs/2501.10630, 2025.
+
+\bibitem{clip}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, Gretchen Krueger, and Ilya Sutskever,
+\newblock ``Learning transferable visual models from natural language supervision,''
+\newblock in {\em Proceedings of the 38th International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021, Virtual Event}, Marina Meila and Tong Zhang, Eds. 2021, vol. 139 of {\em Proceedings of Machine Learning Research}, pp. 8748--8763, {PMLR}.
+
+\bibitem{align}
+Chao Jia, Yinfei Yang, Ye~Xia, Yi{-}Ting Chen, Zarana Parekh, Hieu Pham, Quoc~V. Le, Yun{-}Hsuan Sung, Zhen Li, and Tom Duerig,
+\newblock ``Scaling up visual and vision-language representation learning with noisy text supervision,''
+\newblock in {\em Proceedings of the 38th International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021, Virtual Event}, Marina Meila and Tong Zhang, Eds. 2021, vol. 139 of {\em Proceedings of Machine Learning Research}, pp. 4904--4916, {PMLR}.
+
+\bibitem{flamingo}
+Jean{-}Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana Hasson, Karel Lenc, Arthur Mensch, Katherine Millican, Malcolm Reynolds, Roman Ring, Eliza Rutherford, Serkan Cabi, Tengda Han, Zhitao Gong, Sina Samangooei, Marianne Monteiro, Jacob~L. Menick, Sebastian Borgeaud, Andy Brock, Aida Nematzadeh, Sahand Sharifzadeh, Mikolaj Binkowski, Ricardo Barreira, Oriol Vinyals, Andrew Zisserman, and Kar{\'{e}}n Simonyan,
+\newblock ``Flamingo: a visual language model for few-shot learning,''
+\newblock in {\em Advances in Neural Information Processing Systems 35: Annual Conference on Neural Information Processing Systems 2022, NeurIPS 2022, New Orleans, LA, USA, November 28 - December 9, 2022}, Sanmi Koyejo, S.~Mohamed, A.~Agarwal, Danielle Belgrave, K.~Cho, and A.~Oh, Eds., 2022.
+
+\bibitem{blip}
+Junnan Li, Dongxu Li, Caiming Xiong, and Steven C.~H. Hoi,
+\newblock ``{BLIP:} bootstrapping language-image pre-training for unified vision-language understanding and generation,''
+\newblock in {\em International Conference on Machine Learning, {ICML} 2022, 17-23 July 2022, Baltimore, Maryland, {USA}}, Kamalika Chaudhuri, Stefanie Jegelka, Le~Song, Csaba Szepesv{\'{a}}ri, Gang Niu, and Sivan Sabato, Eds. 2022, vol. 162 of {\em Proceedings of Machine Learning Research}, pp. 12888--12900, {PMLR}.
+
+\bibitem{Time-VLM}
+Siru Zhong, Weilin Ruan, Ming Jin, Huan Li, Qingsong Wen, and Yuxuan Liang,
+\newblock ``Time-vlm: Exploring multimodal vision-language models for augmented time series forecasting,''
+\newblock {\em CoRR}, vol. abs/2502.04395, 2025.
+
+\bibitem{cnn-before-vit}
+Tete Xiao, Mannat Singh, Eric Mintun, Trevor Darrell, Piotr Doll{\'{a}}r, and Ross~B. Girshick,
+\newblock ``Early convolutions help transformers see better,''
+\newblock in {\em Advances in Neural Information Processing Systems 34: Annual Conference on Neural Information Processing Systems 2021, NeurIPS 2021, December 6-14, 2021, virtual}, Marc'Aurelio Ranzato, Alina Beygelzimer, Yann~N. Dauphin, Percy Liang, and Jennifer~Wortman Vaughan, Eds., 2021, pp. 30392--30400.
+
+\bibitem{norm}
+Taesung Kim, Jinhee Kim, Yunwon Tae, Cheonbok Park, Jang{-}Ho Choi, and Jaegul Choo,
+\newblock ``Reversible instance normalization for accurate time-series forecasting against distribution shift,''
+\newblock in {\em The Tenth International Conference on Learning Representations, {ICLR} 2022, Virtual Event, April 25-29, 2022}. 2022, OpenReview.net.
+
+\bibitem{Vilt}
+Wonjae Kim, Bokyung Son, and Ildoo Kim,
+\newblock ``Vilt: Vision-and-language transformer without convolution or region supervision,''
+\newblock in {\em Proceedings of the 38th International Conference on Machine Learning, {ICML} 2021, 18-24 July 2021, Virtual Event}, Marina Meila and Tong Zhang, Eds. 2021, vol. 139 of {\em Proceedings of Machine Learning Research}, pp. 5583--5594, {PMLR}.
+
+\bibitem{Scaling-Law-for-Time-Series-Forecasting}
+Jingzhe Shi, Qinwei Ma, Huan Ma, and Lei Li,
+\newblock ``Scaling law for time series forecasting,''
+\newblock in {\em Advances in Neural Information Processing Systems 38: Annual Conference on Neural Information Processing Systems 2024, NeurIPS 2024, Vancouver, BC, Canada, December 10 - 15, 2024}, Amir Globersons, Lester Mackey, Danielle Belgrave, Angela Fan, Ulrich Paquet, Jakub~M. Tomczak, and Cheng Zhang, Eds., 2024.
+
+\bibitem{Lalign}
+Chen{-}Yu Lee, Saining Xie, Patrick~W. Gallagher, Zhengyou Zhang, and Zhuowen Tu,
+\newblock ``Deeply-supervised nets,''
+\newblock in {\em Proceedings of the Eighteenth International Conference on Artificial Intelligence and Statistics, {AISTATS} 2015, San Diego, California, USA, May 9-12, 2015}, Guy Lebanon and S.~V.~N. Vishwanathan, Eds. 2015, vol.~38 of {\em {JMLR} Workshop and Conference Proceedings}, JMLR.org.
+
+\end{thebibliography}

@@ -1,0 +1,670 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{url}  % 或 \usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage{multirow}
+\usetikzlibrary{positioning, calc}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Spatio-Temporal Channel Prediction via a Dual-Guided VLM-based Framework}
+
+\author{Anonymous ICME submission}
+
+\maketitle
+
+\begin{abstract}
+Channel prediction is a crucial task in various  communications applications. Although existing methods have employed large language models (LLMs) with robust modeling and generalization abilities to improve prediction performance, their practical use is limited by overlooking the underlying visual information of CSI. Recently, vision-language models (VLMs) have transformed multimodal learning by mapping images and text into a unified semantic space. In this paper, we investigate a VLM-based channel prediction framework (CPVLM), aiming to bridge CSI and image-text data. Specifically, we utilize inherent structural alignment between complex-valued CSI and visual data. Subsequently, we devise a coherence embedding method, enabling VLMs to interpret the entire CSI sequence as a coherent linguistic representation. Experimental results demonstrate that CPVLM outperforms the compared schemes and establishes a new direction for channel prediction.
+\cite{cf-swintransformer}\cite{cp-cvcnn}\cite{vit}\cite{cp-ar}\cite{cp-kf}
+
+% This document is a model and instructions for \LaTeX.
+% This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
+% or Math in Paper Title or Abstract. The abstract should contain about 100 to 150 words, and should be identical to the abstract text submitted electronically. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+Channel prediction, spatio-temporal modeling, vision-language models, multimodal learning, coherence embedding
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:intro}
+Accurately acquiring channel state information (CSI) is pivotal in a variety of wireless communication technologies and applications~\cite{DBLP:books/cu/TV2005}, such as precoding, beamforming and power allocation, aiming to improve communication quality and throughput. However, since wireless channels are highly dynamic and are affected by multiple factors such as multipath propagation, user mobility, and environmental changes, the accurate acquisition of CSI presents considerable challenges. Therefore, channel prediction, as a key technology for estimating future channel states based on historical or current observations, has become a promising research prospect. 
+
+In recent years, artificial intelligence (AI) has witnessed remarkable progress, particularly driven by advances in deep learning. These developments have significantly improved performance in wireless communications such as channel estimation~\cite{cf-CEFnet}, channel feedback~\cite{cf-bi-ImCsiNet}, signal detection~\cite{detection}, and beamforming~\cite{ECT-Net}, which brings hope to solve the problems of the channel prediction. Recurrent neural networks (RNN) have demonstrated strong performance in channel prediction by effectively capturing dynamic temporal dependencies~\cite{cp-rnn-1, cp-rnn-2}. In parallel, convolutional neural networks (CNNs) have been employed to model the spatial characteristics of CSI data~\cite{cp-cnn-1, cp-cnn-2}. Moreover, Transformer-based architectures~\cite{cp-transformer} have further advanced the field by enabling parallel processing and leveraging attention mechanisms to focus on salient patterns, thus achieving superior performance under complex and dynamic channel conditions. Fortunately, the emergence of pre-trained large language models (LLMs), distinguished by their powerful modeling and generalization capabilities, has facilitated their application to channel prediction. Unlike classical deep learning approaches, they design customized preprocessor, embedding, and output modules to bridge the gap between CSI data and textual information, aiming to fully exploit the transferable knowledge embedded in pre-trained language models.
+
+\begin{figure}[tb]
+\centerline{\includegraphics{./pic/Task.pdf}}
+% \includegraphics[width=\linewidth]{./pic/Task.pdf}
+\caption{The data structure in MIMO-OFDM system. Pilot symbols are predefined reference signals used for channel estimation, data symbols are unknown user information that must be detected based on the estimated channel.}
+\label{fig:data}
+\end{figure}
+
+Despite these achievements, existing approaches still face several critical limitations. Most notably, they often ignore the natural structural similarities between complex-valued CSI data and image data, and fail to exploit the combined advantages of multiple modalities. These limitations hinder their applicability in more complex or real-world scenarios.
+
+The main challenge at present is how to combine image-text pattern with CSI data to improve prediction performance. To bridge this gap, we introduce CPVLM, a novel framework that use a pre-trained vision-language model to enhance channel prediction by jointly integrating visual, textual, and CSI modalities. Leveraging the strong cross-modal alignment capabilities of vision-language models, CPVLM effectively embeds CSI data into the shared visual-linguistic semantic space, thereby enabling seamless integration across the three modalities. This unified representation fosters cross-modal interactions and allows each modality to contribute complementary information. Specifically, complex-valued CSI data—comprising in-phase (I) and quadrature (Q) components—can be naturally organized into a two-dimensional matrix across multiple time steps and subcarriers, exhibiting a structural resemblance to visual data. Moreover, motivated by the observation that model like~\cite{TEST} maps time-series features into the embedding space of large language models for unified semantic modeling, coherence embedding, aligning CSI embeddings space with VLMs embeddings space, is adopted.
+\begin{itemize}
+    \item We propose VLM-based framework (CPVLM) to enhance channel prediction by leveraging the complementary strengths of CSI data, visual, and textual modalities.
+    \item 
+    We employ a \textbf{Visual Processor} module, a \textbf{Textual Processor} module, and a \textbf{Multimodal Alignment Block} module to integrate heterogeneous modalities, thereby enhancing the accuracy of channel state information prediction.
+    \item Experimental results show that this method achieves optimal performance on channel prediction tasks and exhibits excellent generalization capabilities of \textbf{few-shot}.
+\end{itemize}
+
+\section{Related work}
+\label{sec:rew}
+
+\subsection{Channel prediction (CP)}
+Deep learning-based strategies have been increasingly applied to CP.
+In particular, recurrent neural network, such as LSTM, excel in channel prediction by capturing dynamic temporal features~\cite{cp-rnn-1, cp-rnn-2}.Additionally, CNN-based approaches~\cite{cp-cnn-1, cp-cnn-2}, which model spatial characteristics, is introduced. By facilitating parallel computation and paying attention to important patterns, Transformer-based models have significantly advanced channel prediction in challenging environments~\cite{cp-transformer}. Nevertheless, the lack of accurate modeling and robust generalization remains a key limitation of these models. More recently, inspired by the success of large language modals in fields of natural language processing (NLP)~\cite{gpt3}, some studies reflects their potential in CSI tasks. For instance, LLM4CP~\cite{LLM4CP} fine-tunes a pre-trained GPT-2 for CSI data and deploy a set of modules to boost model effectiveness. Similarly, method~\cite{LLM4CE} leverages the powerful noise removal capability of LLM to improve CSI reconstruction performance. However, these methods remain limited in their ability to align CSI data with the textual input required by LLMs and ignore the inherent structural similarities between CSI and computer vision (CV) data.
+
+\subsection{Vision-Language Models (VLMs)} 
+VLMs are fundamental to multimodal learning, enabling joint understanding of visual and textual modalities.
+% CLIP \cite{clip} and ALIGN \cite{align} demonstrated the effectiveness of contrastive learning in aligning image and text embeddings into a shared latent space. 
+% Studies such as Flamingo~\cite{flamingo} and BLIP~\cite{blip} incorporate cross-attention mechanisms to better capture fine-grained fusion capabilities across modalities.
+CLIP~\cite{clip} and ALIGN~\cite{align} demonstrate that contrastive learning effectively aligns image and text embeddings in a shared latent space. 
+Studies such as Flamingo~\cite{flamingo} and BLIP~\cite{blip} further improve cross-modal interaction by incorporating cross-attention mechanism.
+Beyond conventional computer vision, recent research~\cite{Time-VLM} has begun to extended the application of VLMs to non-visual domains, transforming structured data into visual representations and enabling the reuse of pre-trained visual backbones.
+However, the exploration of VLMs in channel prediction is still in its infancy. These advances demonstrate that VLMs are not limited to native images and can serve as universal cross-modal learners across diverse and data-intensive tasks.
+% Our goal is to bridge this gap by leveraging VLMs to combine CSI data, visual, and textual modalities. These advances demonstrate that VLMs are not limited to native images and can reinforce their potential to serve as universal cross-modal learners across diverse scientific and data-intensive tasks.
+
+\begin{figure*}[tb]
+\centerline{\includegraphics{./pic/Overview1.pdf}}
+% \includegraphics[width=\linewidth]{./pic/Overview.pdf}
+\caption{Overview of proposed method.}
+\label{fig:Overview}
+\end{figure*}
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+\label{subsec:problem_formulation}
+
+As shown in Fig.~\ref{fig:data}, we consider a MIMO-OFDM system with $N_t$ transmit and $N_r$ receive antennas operating over $N_c$ subcarriers. At time step $t$ and subcarrier frequency $k \in \{1,\dots,N_c\}$, the received signal $\mathbf{y}_{t,k} \in \mathbb{C}^{N_r}$ is modeled as:
+\begin{equation}
+    \mathbf{y}_{t,k} = \mathbf{H}_{t,k} \mathbf{x}_{t,k} + \mathbf{n}_{t,k},
+\label{eq:system_model}
+\end{equation}
+where $\mathbf{x}_{t,k} \in \mathbb{C}^{N_t}$ denotes the transmitted vector, and $\mathbf{n}_{t,k} \sim \mathcal{CN}(\mathbf{0}, \sigma^2\mathbf{I})$ represents the additive complex Gaussian noise. The term $\mathbf{H}_{t,k} \in \mathbb{C}^{N_r \times N_t}$ is the Channel Frequency Response (CFR) matrix, i.e., the channel state information (CSI). Aggregating the channel matrices over all subcarriers, we represent the CSI snapshot at time $t$ as
+$\mathcal{H}_t \triangleq \{\mathbf{H}_{t,1},\dots,\mathbf{H}_{t,N_c}\}$.
+Standard schemes insert dense pilots in each coherence interval to estimate $\mathcal{H}_t$, which incurs substantial overhead and reduces spectral efficiency in large-scale or fast-varying channels. To mitigate this burden, we %exploit the temporal correlation of $\{\mathcal{H}_t\}$
+formulate channel prediction as a time-series forecasting task, where a model with parameters $\boldsymbol{\Theta}$ maps $P$ historical CSI snapshots to $L$ future ones:
+\begin{equation}
+    \big(\widetilde{\mathcal{H}}_{t+1},\dots,\widetilde{\mathcal{H}}_{t+L}\big)
+    = f_{\boldsymbol{\Theta}}\big(\mathcal{H}_{t-P+1},\dots,\mathcal{H}_{t}\big),
+\end{equation}
+where $\widetilde{\mathcal{H}}_{t+\ell}$ denotes the predicted CSI at time index $t+\ell$, $\ell = 1,\dots,L$.
+
+\subsection{Overall Architecture}
+
+The overall architecture of our proposed model has been illustrated in Fig.~\ref{fig:Overview}, employing a VLM-based framework with forzen vision encoder and frozen decoder-only LLM. In order to improve the VLM’s extraction of CSI spatiotemporal features, we introduce a dual-guidance mechanism: spatial-structural guidance block and temporal-coherence guidance block. The following sections provide a detailed description of each block.
+
+% These two modules independently extract features, SSG block utilizes the \textit{AR(2+1)D-CVC} to factorize spatial and temporal convolutions to extract geometric features, and the prompt-aware Quering Transformer, or Q-Former, to extract visual features from a frozen visual encoder. TCG block introduces the Coherence Embedding, unlike standard positional encodings, to capture the temporal continuity and physical consistency of the CSI sequence. Ultimately, the outputs of these two modules are fed into a frozen LLM for generative forecasting.
+
+\subsection{Spatial-Structural Guidance}
+
+The objective of this block is to extract geometric features of CSI data and extract visual features from frozen vision encoder.
+Following research \cite{cnn-before-vit} that proving early convolutions improve Visual Transformer(ViT) optimization, we first process the historical CSI $\mathcal{X}_{\mathrm{his}}=\{\mathcal{H}_{t-P+1},\ldots,\mathcal{H}_{t}\}\in\mathbb{C}^{P\times N_c\times N_r\times N_t}$ through residual (2+1) dimensional complex-valued convolutional layers before feeding it into the pre-trained vision encoder. We utilize a complex-valued convolutional neural network(CVCNN) instead of whole CNN to explicitly preserve phase information and factorize the standard 3D convolutional kernel size $3 \times 3 \times 3$ into $3 \times 3 \times 1$ and $1 \times 1 \times 3$ to effectively capture the spatial correlations of $\mathcal{X}_{\mathrm{hist}}$ between the transmit antennas and receive antennas and the local temporal dynamics in the $P$ dimension. 
+% R(2+1)D \cite{R2+1D} factorizes the standard 3D convolutional filter into separate spatial and temporal components.ACNet \cite{ACNet} utilizing asymmetric convolution respectively.
+% The operation can be formulated as:
+
+We fine-tune a pre-trained Querying Transformer (Q-Former). The input to the Q-Former contains a set of K learnable query embeddings $\mathbf{Q} \in \mathbb{R}^{K \times D_q}$ and the prompt-aware visual features from the output embeddings of the frozen visual encoder $\mathbf{F}_{ve}$.
+% Through alternating layers of Self-Attention and Cross-Attention[cite: 25, 26], the queries interact with visual embeddings $\mathbf{F}_{ve}$ to compress the spatial information into K encoded visual vectors $\mathbf{F}_{vv}$:
+The learnable queries interact with the visual embedding $\mathbf{F}_{ve}$ through 6 alternating layers of bidirectional self-attention layers, cross-attention layers, and feed-forward layers, consisting of two linear transformations with a ReLU activation in between, to compress spatial information into K encoded visual vectors $\mathbf{F}_{vv}$:
+
+% Through alternating between frozen bidirectional self-attention layers, trainable cross-attention layers, frozen feed-forward, and minimizing the training objectives $\mathcal {L}_\mathrm{rec}$, the query interacts with the $\mathbf{F}_{ve}$ to compress spatial information into K encoded visual vectors $\mathbf{F}_{vv}$:
+\begin{align}
+\tilde{\mathbf{Q}}^{(l)} &= \mathbf{Q}^{(l-1)} + \operatorname{MSA}\Big(\operatorname{LN}([\mathbf{Q}^{(l-1)}, \mathbf{P}])\Big),\\
+\hat{\mathbf{Q}}^{(l)} &= \tilde{\mathbf{Q}}^{(l)} + \operatorname{MCA}\Big(\operatorname{LN}(\tilde{\mathbf{Q}}^{(l)}), \mathbf{F}_{ve}, \mathbf{F}_{ve}\Big),\\
+% \mathbf{Q}^{(l)} &= \hat{\mathbf{Q}}^{(l)} + \operatorname{FFN}\Big( \operatorname{LN}(\hat{\mathbf{Q}}^{(l)}) \Big),\\
+\mathbf{Q}^{(l)} &= \hat{\mathbf{Q}}^{(l)} + \operatorname{max}( 0, \operatorname{LN}(\hat{\mathbf{Q}}^{(l)}) W_{1} + b_1 )W_2 + b_2,\\
+\mathbf{F}_{vv} &= \mathbf{Q}^{(6)},
+% Overview
+% \tilde{\mathbf{Q}}^{(l)} &= \operatorname{FFN}(\operatorname {MCA}( \operatorname {MSA}[\mathbf{Q}^{(l-1)}; \mathbf P])) + \mathbf{Q}^{(l-1)}\\
+\end{align}
+where $\operatorname{LN}(\cdot)$ denotes Layer Normalization, $\operatorname{MSA}(Q, K, V)$ represents the Multi-Head Self-Attention mechanism, $\operatorname{MCA}(Q, K, V)$ represents the Multi-Head Cross-Attention mechanism, and $\mathbf{Q}^{(n)} $ represents the output of the $n$-th Q-Former layer.
+
+% \begin{equation}
+%     \mathbf{F}_{vv} = \operatorname{Q-Former}(\mathbf{Q}, \mathbf{F}_{ve}, prompt)
+% \end{equation}
+% These vectors $\mathbf{F}_{vv}$ serve as soft prompt input to the frozen LLM.
+
+% \begin{algorithm}[tb]
+%    \caption{Complex Rate-Adaptive Coherence Segmentation (CRACS)}
+%    \label{alg:cracs}
+% \begin{algorithmic}[1]
+%    \STATE {\bfseries Input:} Complex CSI sequence $\mathbf{H} \in \mathbb{C}^{T \times D}$, Sensitivity threshold $\tau \in \mathbb{R}^+$
+%    \STATE {\bfseries Output:} Coherence Segment Indices $\mathbf{S} \in \mathbb{Z}^{T}$
+   
+%    \vspace{0.1cm}
+%    \STATE \textcolor{gray}{\# Step 1: Compute Complex Differential Magnitude (The Rate)}
+%    \STATE Initialize rate vector $\boldsymbol{\rho} \in \mathbb{R}^{T}$
+%    \FOR{$t=2$ {\bfseries to} $T$}
+%        \STATE \textcolor{gray}{\# Euclidean distance in complex plane: $\sqrt{\Delta Re^2 + \Delta Im^2}$}
+%        \STATE $\boldsymbol{\rho}_t \leftarrow \| \mathbf{H}_t - \mathbf{H}_{t-1} \|_2$
+%    \ENDFOR
+%    \STATE $\boldsymbol{\rho}_1 \leftarrow \boldsymbol{\rho}_2$ \hfill \textcolor{gray}{\# Padding for the first step}
+   
+%    \vspace{0.1cm}
+%    \STATE \textcolor{gray}{\# Step 2: Backward Recursive Clustering}
+%    \STATE Initialize $\mathbf{S}$ with zeros; $id \leftarrow 0$; $\mathbf{S}[T] \leftarrow 0$
+   
+%    \FOR{$t=T$ {\bfseries down to} $2$}
+%        \STATE \textcolor{gray}{\# Calculate ratio of current rate to preceding rate}
+%        \STATE $ratio \leftarrow \frac{\boldsymbol{\rho}_t}{\boldsymbol{\rho}_{t-1} + \epsilon}$
+       
+%        \IF{$ratio < \tau$}
+%            \STATE \textcolor{gray}{\# Stable evolution detected: Maintain Coherence ID}
+%            \STATE $\mathbf{S}[t-1] \leftarrow id$
+%        \ELSE
+%            \STATE \textcolor{gray}{\# Volatility spike detected: Assign New ID}
+%            \STATE $id \leftarrow id + 1$
+%            \STATE $\mathbf{S}[t-1] \leftarrow id$
+%        \ENDIF
+%    \ENDFOR
+   
+%    \RETURN $\mathbf{S}$
+% \end{algorithmic}
+% \end{algorithm}
+
+\subsection{Temporal-coherence guidance block}
+To be fed into frozen LLM model, we first reshape historical CSI $\mathcal {X}_{his}$ into dense form $\mathcal X_{rearrange}\in\mathbb{R}^{P\times (2 \cdot N_c \cdot N_r \cdot N_t)}$, where each complex entry is decomposed into its real and imaginary part, and then apply instance normalization \cite{norm} to the input $\mathcal X_{rearrange}$, standardizing each sample to zero mean and unit variance.
+
+We introduce the Coherence Embedding as the primary mechanism of this block, inspired by the theoretical channel correlation properties. The calculation method for coherence segmentation $\mathbf{S \in \mathbb{Z}^{T}}$ can be summarized by algorithm~\ref{alg:Coherence}.
+% inspired by \cite{TcEmbedding}
+
+Thus, the composite embedding input $\mathbf{H}_{in}$ for frozen decoder-only LLM can be represented as:
+\begin{equation}
+    \mathbf{H}_{in} = [\mathbf{F}_{vv}, \mathbf{F}_{a} + \mathbf{E}_{coh}] + \mathbf{E}_{pos} + \mathbf{E}_{modal} ,
+\end{equation}
+where $\mathbf{E}_{modal}$ and $\mathbf{E}_{pos}$ denote standard modal-type and positional embeddings in \cite{Vilt}, and $\mathbf{E}_{coh}$ represents the novel coherence embedding method, calculated from $\boldsymbol{Embedding}(\mathbf{S})$.
+
+is a learnable coherence embedding vector designed to guide the frozen LLM in maintaining the temporal causality and physical consistency of the predicted CSI series.
+The LLM output hidden states, which encode future channel dynamics, are passed through a linear projection layer. We then apply denormalization and reshaping to map these semantic linear representations back to the predicted CSI $\hat{\mathcal{Y}}_{pred} = \{\hat{\mathcal{H}}_{t+1},\dots,\hat{\mathcal{H}}_{t+L}\} \in \mathbb{C}^{L\times N_c\times N_r\times N_t}$.
+
+
+\subsection{Training}
+We form training samples by sliding a window \cite{Scaling-Law-for-Time-Series-Forecasting} of length $P+L$ over the time dimension of training dataset $\mathcal{D}_{train}$, splitting each window $\mathcal {X}=\mathcal{H}_{t-P+1:t+L}$ into a historical segment $\mathcal {X}_{his}=\mathcal{H}_{t-P+1:t}$ and a target segment $\mathcal {X}_{gt}=\mathcal{H}_{t:t+L}$. With $\mathcal {X}_{\mathrm{gt}}$ as supervision, we train the model to map $\mathcal {X}_{his}$ to the prediction $ \hat{\mathcal{Y}}_{pred}=\mathcal{H}_{t:t+L}$.
+
+The total loss of our model is formed by:
+\begin{equation}
+    \mathcal{L}_{total} = \mathcal{L}_{pred} + \lambda \mathcal{L}_{rec},
+\end{equation}
+The $\mathcal {L}_{pred}$ minimizes the normalized mean squared error (MSE) between the predicted and ground-truth CSI:
+\begin{equation}
+    \mathcal{L}_{pred} = \frac{\|\hat{\mathcal{Y}}_{pred} - \mathcal{X}_{gt}\|_F^2}{\|\mathcal{X}_{gt}\|_F^2},
+\end{equation}
+where $\|\cdot\|_F$ denotes the Frobenius norm. 
+Inspired by the concept of Deep Supervision \cite{Lalign}, which employ discriminative classifiers for intermediate layers, we propose an auxiliary reconstruction objective $\mathcal{L}_{rec}$:
+\begin{equation} 
+    \mathcal{L}{rec} = \| \mathcal{R}(\mathbf{Z}_q \mathbf{W}_{rec} + \mathbf{b}_{rec}) - \mathcal{X}_{his} \|_F^2, 
+\end{equation}
+where $\|\cdot\|_F$ denotes the Frobenius norm, $\mathbf{Z}_q \in \mathbb{R}^{N_q \times D}$ denotes the output of the Q-Former, and $\mathcal{R}(\cdot)$ denotes the reshaping operation that restores the spatiotemporal dimensions subsequent to the affine transformation of $\mathbf{Z}_q$ using the weight matrix $\mathbf{W}_{rec}$ and bias vector $\mathbf{b}_{rec}$. The hyperparameter $\lambda$ balances the auxiliary loss $\mathcal{L}_{rec}$ with the primary loss $\mathcal{L}_{pred}$.
+
+
+\begin{algorithm}[tb]
+   \caption{Coherence Segmentation}
+   \label{alg:Coherence}
+\begin{algorithmic}[1]
+   \STATE {\bfseries Input:} Historical CSI sequence $\mathbf{X} \in \mathbb{C}^{T \times D}$, sensitivity threshold $\eta$ (Hyperparameter)
+   \STATE {\bfseries Output:} Coherence Segment Indices $\mathbf{S} \in \mathbb{Z}^{T}$
+
+   \vspace{0.1cm}
+
+   \STATE $current\_id \leftarrow 0$
+   \STATE $\mathbf{S}[1] \leftarrow current\_id$
+   \FOR{$t=2$ {\bfseries to} $T$}
+    %    \STATE \textcolor{gray}{\# Calculate change ratio relative to the preceding step}
+        \STATE $\boldsymbol{\delta} \leftarrow \| \mathbf{X}_t - \mathbf{X}_{t-1} \|_2$ 
+\vspace{0.10cm}
+       \STATE $ratio \leftarrow \dfrac{\boldsymbol{\delta}}{ \| \mathbf{X}_{t-1} \|_2 + \epsilon}$
+\vspace{0.10cm}
+       \IF{$ratio < \eta $}
+        %    \STATE \textcolor{gray}{\# Coherence maintained: Assign same ID}
+           \STATE $\mathbf{S}[t] \leftarrow current\_id$
+       \ELSE
+        %    \STATE \textcolor{gray}{\# Coherence break detected: Increment ID}
+           \STATE $\mathbf{S}[t] \leftarrow current\_id + 1$
+
+           \STATE $current\_id \leftarrow current\_id + 1$
+       \ENDIF
+   \ENDFOR
+   
+   \RETURN $\mathbf{S}$
+\end{algorithmic}
+\end{algorithm}
+
+
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\subsubsection{Datasets}
+We evaluated our model on the open mobile communication dataset\footnote{\url{www.mobileai-dataset.com}}, categorized into four subsets according to user velocity: 30km/h, 60km/h, 120km/h, and a mixture of samples from the aforementioned three speed levels. For each subset, we collect 21,000 samples structured as time-frequency grids across 32 transmit and 4 receive antennas. Each sample encompasses 20 time steps with a Transmission Time Interval (TTI) of 5 ms and spans 8 Physical Resource Blocks (PRBs) in the frequency domain. Specific simulation parameters are listed in Table~\ref{lab:scenario}.
+
+\subsubsection{Baseline} 
+To evaluate the effectiveness of LM-net, we compared it against several methods, such as convolutional neural networks (CNNs)~\cite{cp-cnn-1}, and long short-term memory (LSTM) networks~\cite{cp-rnn-2}.
+To ensure a fair comparison across all baselines, we adopt a unified experimental framework. 
+
+\subsubsection{Evaluation Metrics}
+In this study, we use \textbf{N}ormalized \textbf{M}ean \textbf{S}quared \textbf{E}rror (NMES) and \textbf{S}patial-\textbf{G}rouped \textbf{C}osine \textbf{S}imilarity (SGCS) as evaluation metrics to measure the prediction performance of the models. 
+
+NMSE provides a scale-invariant and interpretable metric that effectively reflects the accuracy of predicted magnitudes.
+\begin{equation}
+    \mathrm{NMSE}=\frac{\|\widehat{\mathbf{H}}-\mathbf{H}\|_2^2}{\|\mathbf{H}\|_2^2},
+\end{equation}
+where $\mathbf{H} \in \mathbb{C}^{N_s \times N}$ and  $\hat{\mathbf{H}}$ represents the target channel matrix and the model output, respectively and $\| \cdot \|_2$ represents the Frobenius norm.
+
+SGCS quantifies the angular difference between two vectors, with values ranging from $-1 \text{ to } 1$.
+\begin{equation}
+    SGCS = \frac{1}{N_s}\frac{1}{N}\sum_{i=0}^{N_s-1}\sum_{j=0}^{N-1}\frac{\mathbf{H_{i,j}}\widehat{\mathbf{H_{i,j}}}}{\lVert\mathbf{H_{i,j}}\rVert \lVert\widehat{\mathbf{H_{i,j}}}\rVert},
+\end{equation}
+where $\mathbf{H} \in \mathbb{C}^{N_s \times N}$. These two evaluation metrics assess channel prediction from two complementary aspects: the directional angle and the complex amplitude, respectively, demonstrating their feasibility and effectiveness.
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{c|c|c@{  }c|c@{  }c|c@{  }c|c@{  }c|c@{  }c|c@{  }c}
+\toprule
+\multicolumn{2}{c}{\textbf{Models}} & \multicolumn{2}{c}{\textbf{CPVLM}} & \multicolumn{2}{c}{\textbf{CNN}} & \multicolumn{2}{c}{\textbf{RNN}} & \multicolumn{2}{c}{\textbf{LSTM}} & \multicolumn{2}{c}{\textbf{Transformer}} & \multicolumn{2}{c}{\textbf{LLM4CP}} \\
+\midrule
+
+\multicolumn{2}{c}{\textbf{Metric}}  & NMSE & SGCS & NMSE & SGCS & NMSE & SGCS & NMSE & SGCS & NMSE & SGCS & NMSE & SGCS \\
+\midrule
+\multirow{4}{*}{\rotatebox{90}{30 km/h}}
+& 5 & \textbf{0.012} & \textbf{0.972} & 0.096 & 0.837 & 0.070 & 0.877 & \underline{0.019} & 0.959 & 0.024 & \underline{0.960} & 0.022 & 0.959 \\
+& 8& \textbf{0.006} & \textbf{0.987} & 0.076 & 0.868 & 0.055 & 0.900 & \underline{0.014} & 0.965 & 0.027 & 0.953 & 0.016 & \underline{0.968} \\
+& 10 & \textbf{0.005} & \textbf{0.988} & 0.075 & 0.870 & 0.054 & 0.902 & \underline{0.014} & \underline{0.967} & 0.032 & 0.955 & 0.023 & 0.961 \\
+& 16 & \textbf{0.006} & \textbf{0.988} & 0.092 & 0.849 & 0.068 & 0.891 & \underline{0.022} & \underline{0.975} & 0.040 & 0.946 & 0.026 & 0.946 \\
+\midrule
+\multirow{4}{*}{\rotatebox{90}{60 km/h}}
+& 5 & \textbf{0.120} & \textbf{0.776} & 0.207 & 0.688 & 0.188 & 0.709 & 0.151 & 0.752 & \underline{0.140} & \underline{0.766} & 0.145 & 0.759 \\
+& 8 & \textbf{0.122} & \underline{0.771} & 0.193 & 0.698 & 0.179 & 0.713 & 0.150 & 0.744 & 0.134 & 0.771 & 0.127 & \textbf{0.778} \\
+& 10 & \textbf{0.126} & 0.764 & 0.188 & 0.702 & 0.174 & 0.723 & 0.147 & 0.765 & \underline{0.130} & \textbf{0.787} & 0.138 & \underline{0.776} \\
+& 16 & \underline{0.137} & 0.745 & 0.203 & 0.695 & 0.192 & 0.712 & 0.169 & 0.745 & 0.145 & \underline{0.768} & \textbf{0.135} & \textbf{0.777} \\
+\midrule
+
+\multirow{4}{*}{\rotatebox{90}{120 km/h}}
+& 5 & \textbf{0.176} & 0.707 & 0.241 & 0.650 & 0.225 & 0.666 & 0.193 & 0.699 & \underline{0.182} & \textbf{0.722} & 0.188 & \underline{0.710} \\
+& 8 & 0.175 & 0.708 & 0.215 & 0.663 & 0.207 & 0.673 & 0.192 & 0.692 & \underline{0.173} & \textbf{0.728} & \textbf{0.166} & \underline{0.723} \\
+& 10 & \underline{0.174} & 0.702 & 0.209 & 0.672 & 0.202 & 0.681 & 0.188 & 0.698 & \textbf{0.172} & \textbf{0.732} & 0.180 & \underline{0.715} \\
+& 16 & \underline{0.178} & 0.703 & 0.212 & 0.668 & 0.209 & 0.677 & 0.202 & 0.696 & 0.186 & \textbf{0.724} & \textbf{0.169} & \underline{0.719} \\
+\midrule
+
+\multirow{4}{*}{\rotatebox{90}{x km/h}}
+& 5 & \textbf{0.116} & \textbf{0.802} & 0.198 & 0.708 & 0.180 & 0.731 & \underline{0.144} & 0.775 & 0.140 & \underline{0.788} & 0.142 & 0.782 \\
+& 8 & \textbf{0.114} & \underline{0.792} & 0.178 & 0.722 & 0.166 & 0.742 & 0.141 & 0.784 & 0.133 & 0.792 & \underline{0.119} & \textbf{0.803} \\
+& 10 & \textbf{0.118} & 0.787 & 0.174 & 0.719 & 0.164 & 0.743 & 0.143 & 0.791 & \underline{0.132} & \textbf{0.796} & 0.138 & \underline{0.793} \\
+& 16 & \textbf{0.131} & 0.775 & 0.184 & 0.711 & 0.174 & 0.733 & 0.156 & 0.778 & 0.142 & \underline{0.774} & 0.149 & \textbf{0.798} \\
+\midrule
+average & - & \textbf{0.107} & \textbf{0.810} & 0.171 & 0.732 & 0.157 & 0.755 & 0.128 & 0.799 & 0.121 & \underline{0.810} & \underline{0.118} & \underline{0.810} \\
+\bottomrule
+\end{tabular}
+
+\caption{Full-shot learning on all training data. The size of observation window is set as 12 and prediction winodw size $l_o \in \{2, 4, 8\}$. For NMSE, lower values indicate better performance, for SGCS, higher values indicate better performance. Bold: best, Underline: second best}
+\label{table1}
+\end{table*}
+
+\subsection{Implement Details}
+This experiment was conducted on a machine running Ubuntu 22.04.3 LTS, equipped with four NVIDIA RTX 4090 GPUs (24 GB of video memory each). For the frozen backbone, we adopted the base CLIP ViT model~\cite{clip} as visual encoder and GPT-2 as decoder-only large language model.
+
+\subsection{Result}
+\subsection{Abtion Study}
+% -------- Table --------
+\begin{table}[htbp]
+\caption{Parameters for Dataset}
+\begin{center}
+\begin{tabular}{c|c}
+\toprule
+{\bfseries Parameters} & {\bfseries Value} \\
+\midrule
+Scenario & Dense Urban (Macro only) \\
+Channel model & According to TR 38.901 \\
+Inter-BS distance & 200m \\
+Frequency Range & FR1 only; 2GHz \\
+Subcarrier Spacing & 15kHz for 2GHz \\
+Bandwidth & 10M (52RB) \\
+Speed & 30/60/120/Mix.\ km/h \\
+Data size & (21000, 20, 2, 32, 4, 8) \\
+\bottomrule
+\end{tabular}
+\label{lab:scenario}
+\end{center}
+\end{table}
+\section{Conclusion}
+\label{sec:conv}
+In this paper, we introduces CPVLM, a novel framework leveraging vision-language models (VLMs) for channel state information (CSI) prediction. By harnessing the intrinsic structural similarity between complex-valued CSI and visual data, CPVLM effectively bridges CSI representations with the visual-linguistic semantic space. To strengthen the alignment, we develop a coherence embedding technique that transforms the entire CSI sequence into a unified linguistic representation, enabling the model to capture both temporal dynamics and semantic relationships. Experimental results demonstrate that CPVLM consistently outperforms baseline methods. These outcomes highlight the promising potential of VLMs in wireless communication applications and open new directions for multimodal modeling of CSI data.
+
+% \section{Introduction}
+% % \label{sec:intro}
+
+% These guidelines include complete descriptions of the fonts, spacing, and related information for producing your proceedings manuscripts. Please follow them. 
+
+% \subsection{Language}
+
+% All manuscripts must be in English.
+
+% \subsection{Paper length}
+
+% Papers should be no longer than 6 pages, including all text, figures, and references.
+
+% \subsection{Supplemental material}
+
+% Authors may optionally upload supplemental material. Typically, this material might include:
+% \begin{itemize}
+%     \item a short presentation summarizing the paper,
+%     \item videos of results that cannot be included in the main paper,
+%     \item screen recording of the running program
+%     \item anonymized related submissions to other conferences and journals, and
+%     \item appendices or technical reports containing extended proofs and mathematical derivations that are not essential for understanding of the paper.
+% \end{itemize}
+
+% Note that the contents of the supplemental material should be referred to appropriately in the paper and that reviewers are not obliged to look at it.
+
+% All supplemental material must be zipped into a single file. There is a 20MB limit on the size of this file.
+
+% \subsection{Dual submission}
+
+% By submitting a manuscript to ICME, the authors guarantee that it has not been previously published (or accepted for publication) in substantially similar form. Furthermore, no paper which contains significant overlap with the contributions of this paper either has been or will be submitted during the ICME 2026 review period to either a journal or a conference.
+
+% If there are papers that may appear to violate any of these conditions, then it is the authors' responsibility to (1) cite these papers (preserving anonymity as described in Section 2 of this example paper), (2) argue in the body of your paper why your ICME paper is nontrivially different from these concurrent submissions, and (3) include anonymized versions of those papers in the supplemental material.
+
+% \section{Double-Blind Review}
+
+% Many authors misunderstand the concept of anonymizing for double-blind review. Double-blind review does not mean that one must remove citations to one's own work -- in fact it is often impossible to review a paper unless the previous citations are known and available.
+
+% Double-blind review means that you do not put your name in the authors' list and do not use the words ``my'' or ``our'' when citing previous work. That is all. (But see below for technical reports)
+
+% Saying ``this builds on the work of Lucy Smith [1]'' does not say that you are Lucy Smith, it says that you are building on her work. If you are Smith and Jones, do not say ``as we show in [7]'', say ``as Smith and Jones show in [7]''and at the end of the paper, include reference 7 as you would any other cited work.
+
+% An example of a bad paper:
+% \begin{quote}
+% \begin{center}
+%     An analysis of the frobnicatable foo filter.
+% \end{center}
+
+%    In this paper we present a performance analysis of our
+%    previous paper [1], and show it to be inferior to all
+%    previously known methods. Why the previous paper was
+%    accepted without this analysis is beyond me.
+
+%    [1] Removed for blind review
+% \end{quote}
+
+% An example of an excellent paper:
+
+% \begin{quote}
+% \begin{center}
+%      An analysis of the frobnicatable foo filter.
+% \end{center}
+
+%    In this paper we present a performance analysis of the
+%    paper of Smith [1], and show it to be inferior to
+%    all previously known methods.  Why the previous paper
+%    was accepted without this analysis is beyond me.
+
+%    [1] Smith, L and Jones, C. ``The frobnicatable foo
+%    filter, a fundamental contribution to human knowledge''.
+%    Nature 381(12), 1-213.
+% \end{quote}
+
+% If you are making a submission to another conference at the same time, which covers similar or overlapping material, you may need to refer to that submission in order to explain the differences, just as you would if you had previously published related work. In such cases, include the anonymized parallel submission~\cite{Authors12} as additional material and cite it as
+
+% \begin{quote}
+% 1. Authors. ``The frobnicatable foo filter'', ACM MM 2016 Submission ID 324, Supplied as additional material {\tt acmmm13.pdf}.
+% \end{quote}
+
+% Finally, you may feel you need to tell the reader that more details can be found elsewhere, and refer them to a technical report. For conference
+% submissions, the paper must stand on its own, and not {\em require} the reviewer to go to a technical report for further details. Thus, you may say in
+% the body of the paper ``further details may be found in~\cite{Authors12b}''.  Then submit the technical report as additional material. Again, you may not assume the reviewers will read this material.
+
+% Sometimes your paper is about a problem which you tested using a tool which is widely known to be restricted to a single institution.  For example, let's say it's 1969, you have solved a key problem on the Apollo lander, and you believe that the ICME audience would like to hear about your solution.  The work is a development of your celebrated 1968 paper entitled ``Zero-g frobnication: How being the only people in the world with access to the Apollo lander source code makes us a wow at parties'', by Zeus.
+
+% You can handle this paper like any other.  Don't write ``We show how to improve our previous work [Anonymous, 1968].  This time we tested the algorithm on a lunar lander [name of lander removed for blind review]''. That would be silly, and would immediately identify the authors. Instead write the following:
+% \begin{quotation}
+% \noindent
+%    We describe a system for zero-g frobnication.  This
+%    system is new because it handles the following cases:
+%    A, B.  Previous systems [Zeus et al. 1968] didn't
+%    handle case B properly.  Ours handles it by including
+%    a foo term in the bar integral.
+
+%    ...
+
+%    The proposed system was integrated with the Apollo
+%    lunar lander, and went all the way to the moon, don't
+%    you know.  It displayed the following behaviours
+%    which show how well we solved cases A and B: ...
+% \end{quotation}
+
+% As you can see, the above text follows standard scientific convention, reads better than the first version, and does not explicitly name you as the authors. A reviewer might think it likely that the new paper was written by Zeus, but cannot make any decision based on that guess. He or she would have to be sure that no other authors could have been contracted to solve problem B.
+
+% FAQ: Are acknowledgements OK?  No. Please omit them in the review copy and leave them for the final, camera ready copy.
+
+% \section{Ease of Use}
+
+% \subsection{Maintaining the Integrity of the Specifications}
+
+% The IEEEtran class file is used to format your paper and style the text. All margins, 
+% column widths, line spaces, and text fonts are prescribed; please do not 
+% alter them. You may note peculiarities. For example, the head margin
+% measures proportionately more than is customary. This measurement 
+% and others are deliberate, using specifications that anticipate your paper 
+% as one part of the entire proceedings, and not as an independent document. 
+% Please do not revise any of the current designations.
+
+% \section{Prepare Your Paper Before Styling}
+% Before you begin to format your paper, first write and save the content as a 
+% separate text file. Complete all content and organizational editing before 
+% formatting. Please note sections \ref{AA}--\ref{SCM} below for more information on 
+% proofreading, spelling and grammar.
+
+% Keep your text and graphic files separate until after the text has been 
+% formatted and styled. Do not number text heads---{\LaTeX} will do that 
+% for you.
+
+% \subsection{Abbreviations and Acronyms}\label{AA}
+% Define abbreviations and acronyms the first time they are used in the text, 
+% even after they have been defined in the abstract. Abbreviations such as 
+% IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
+% abbreviations in the title or heads unless they are unavoidable.
+
+% \subsection{Units}
+% \begin{itemize}
+% \item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary units (in parentheses). An exception would be the use of English units as identifiers in trade, such as ``3.5-inch disk drive''.
+% \item Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity that you use in an equation.
+% \item Do not mix complete spellings and abbreviations of units: ``Wb/m\textsuperscript{2}'' or ``webers per square meter'', not ``webers/m\textsuperscript{2}''. Spell out units when they appear in text: ``. . . a few henries'', not ``. . . a few H''.
+% \item Use a zero before decimal points: ``0.25'', not ``.25''. Use ``cm\textsuperscript{3}'', not ``cc''.)
+% \end{itemize}
+
+% \subsection{Equations}
+% Number equations consecutively. To make your 
+% equations more compact, you may use the solidus (~/~), the exp function, or 
+% appropriate exponents. Italicize Roman symbols for quantities and variables, 
+% but not Greek symbols. Use a long dash rather than a hyphen for a minus 
+% sign. Punctuate equations with commas or periods when they are part of a 
+% sentence, as in:
+% \begin{equation}
+% a+b=\gamma. \label{eq}
+% \end{equation}
+
+% Be sure that the 
+% symbols in your equation have been defined before or immediately following 
+% the equation. Use ``\eqref{eq}'', not ``Eq.~\eqref{eq}'' or ``equation \eqref{eq}'', except at 
+% the beginning of a sentence: ``Equation \eqref{eq} is . . .''
+
+% \subsection{\LaTeX-Specific Advice}
+
+% Please use ``soft'' (e.g., \verb|\eqref{Eq}|) cross references instead
+% of ``hard'' references (e.g., \verb|(1)|). That will make it possible
+% to combine sections, add equations, or change the order of figures or
+% citations without having to go through the file line by line.
+
+% Please don't use the \verb|{eqnarray}| equation environment. Use
+% \verb|{align}| or \verb|{IEEEeqnarray}| instead. The \verb|{eqnarray}|
+% environment leaves unsightly spaces around relation symbols.
+
+% Please note that the \verb|{subequations}| environment in {\LaTeX}
+% will increment the main equation counter even when there are no
+% equation numbers displayed. If you forget that, you might write an
+% article in which the equation numbers skip from (17) to (20), causing
+% the copy editors to wonder if you've discovered a new method of
+% counting.
+
+% {\BibTeX} does not work by magic. It doesn't get the bibliographic
+% data from thin air but from .bib files. If you use {\BibTeX} to produce a
+% bibliography you must send the .bib files. 
+
+% {\LaTeX} can't read your mind. If you assign the same label to a
+% subsubsection and a table, you might find that Table I has been cross
+% referenced as Table IV-B3. 
+
+% {\LaTeX} does not have precognitive abilities. If you put a
+% \verb|\label| command before the command that updates the counter it's
+% supposed to be using, the label will pick up the last counter to be
+% cross referenced instead. In particular, a \verb|\label| command
+% should not go before the caption of a figure or a table.
+
+% Do not use \verb|\nonumber| inside the \verb|{array}| environment. It
+% will not stop equation numbers inside \verb|{array}| (there won't be
+% any anyway) and it might stop a wanted equation number in the
+% surrounding equation.
+
+% \subsection{Some Common Mistakes}\label{SCM}
+% \begin{itemize}
+% \item The word ``data'' is plural, not singular.
+% \item The subscript for the permeability of vacuum $\mu_{0}$, and other common scientific constants, is zero with subscript formatting, not a lowercase letter ``o''.
+% \item In American English, commas, semicolons, periods, question and exclamation marks are located within quotation marks only when a complete thought or name is cited, such as a title or full quotation. When quotation marks are used, instead of a bold or italic typeface, to highlight a word or phrase, punctuation should appear outside of the quotation marks. A parenthetical phrase or statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.)
+% \item A graph within a graph is an ``inset'', not an ``insert''. The word alternatively is preferred to the word ``alternately'' (unless you really mean something that alternates).
+% \item Do not use the word ``essentially'' to mean ``approximately'' or ``effectively''.
+% \item In your paper title, if the words ``that uses'' can accurately replace the word ``using'', capitalize the ``u''; if not, keep using lower-cased.
+% \item Be aware of the different meanings of the homophones ``affect'' and ``effect'', ``complement'' and ``compliment'', ``discreet'' and ``discrete'', ``principal'' and ``principle''.
+% \item Do not confuse ``imply'' and ``infer''.
+% \item The prefix ``non'' is not a word; it should be joined to the word it modifies, usually without a hyphen.
+% \item There is no period after the ``et'' in the Latin abbreviation ``et al.''.
+% \item The abbreviation ``i.e.'' means ``that is'', and the abbreviation ``e.g.'' means ``for example''.
+% \end{itemize}
+% An excellent style manual for science writers is \cite{b7}.
+
+% \subsection{Authors and Affiliations}
+% \textbf{Do not include authors' names or affiliations in the initial submission, since the review is double-blind.} A different template will be provided for camera-ready papers, which would allow authors' names and affiliations to be displayed. The class file is designed for, but not limited to, six authors. A 
+% minimum of one author is required for all conference articles. Author names 
+% should be listed starting from left to right and then moving down to the 
+% next line. This is the author sequence that will be used in future citations 
+% and by indexing services. Names should not be listed in columns nor group by 
+% affiliation. Please keep your affiliations as succinct as possible (for 
+% example, do not differentiate among departments of the same organization).
+
+% \subsection{Identify the Headings}
+% Headings, or heads, are organizational devices that guide the reader through 
+% your paper. There are two types: component heads and text heads.
+
+% Component heads identify the different components of your paper and are not 
+% topically subordinate to each other. Examples include Acknowledgments and 
+% References and, for these, the correct style to use is ``Heading 5''. Use 
+% ``figure caption'' for your Figure captions, and ``table head'' for your 
+% table title. Run-in heads, such as ``Abstract'', will require you to apply a 
+% style (in this case, italic) in addition to the style provided by the drop 
+% down menu to differentiate the head from the text.
+
+% Text heads organize the topics on a relational, hierarchical basis. For 
+% example, the paper title is the primary text head because all subsequent 
+% material relates and elaborates on this one topic. If there are two or more 
+% sub-topics, the next level head (uppercase Roman numerals) should be used 
+% and, conversely, if there are not at least two sub-topics, then no subheads 
+% should be introduced.
+
+% \subsection{Figures and Tables}
+% \paragraph{Positioning Figures and Tables} Place figures and tables at the top and 
+% bottom of columns. Avoid placing them in the middle of columns. Large 
+% figures and tables may span across both columns. Figure captions should be 
+% below the figures; table heads should appear above the tables. Insert 
+% figures and tables after they are cited in the text. \color{red}Use the abbreviation 
+% ``Fig.~\ref{fig}'', even at the beginning of a sentence.
+% \color{black}
+
+% \begin{table}[htbp]
+% \caption{Table Type Styles}
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|}
+% \hline
+% \textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
+% \cline{2-4} 
+% \textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
+% \hline
+% copy& More table copy$^{\mathrm{a}}$& &  \\
+% \hline
+% \multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
+% \end{tabular}
+% \label{tab1}
+% \end{center}
+% \end{table}
+
+% \begin{figure}[htbp]
+% \centerline{\includegraphics{./pic/fig1.png}}
+% \caption{Example of a figure caption.}
+% \label{fig}
+% \end{figure}
+
+% Figure Labels: Use 8 point Times New Roman for Figure labels. Use words 
+% rather than symbols or abbreviations when writing Figure axis labels to 
+% avoid confusing the reader. As an example, write the quantity 
+% ``Magnetization'', or ``Magnetization, M'', not just ``M''. If including 
+% units in the label, present them within parentheses. Do not label axes only 
+% with units. In the example, write ``Magnetization (A/m)'' or ``Magnetization 
+% \{A[m(1)]\}'', not just ``A/m''. Do not label axes with a ratio of 
+% quantities and units. For example, write ``Temperature (K)'', not 
+% ``Temperature/K''.
+
+% \section*{Acknowledgment}
+
+% The preferred spelling of the word ``acknowledgment'' in America is without 
+% an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
+% G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
+% acknowledgments in the unnumbered footnote on the first page.
+
+% \section*{References}
+
+% Please number citations consecutively within brackets \cite{b1}. The 
+% sentence punctuation follows the bracket \cite{b2}. Refer simply to the reference 
+% number, as in \cite{b3}---do not use ``Ref. \cite{b3}'' or ``reference \cite{b3}'' except at 
+% the beginning of a sentence: ``Reference \cite{b3} was the first $\ldots$''
+
+% Number footnotes separately in superscripts. Place the actual footnote at 
+% the bottom of the column in which it was cited. Do not put footnotes in the 
+% abstract or reference list. Use letters for table footnotes.
+
+% Unless there are six authors or more give all authors' names; do not use 
+% ``et al.''. Papers that have not been published, even if they have been 
+% submitted for publication, should be cited as ``unpublished'' \cite{b4}. Papers 
+% that have been accepted for publication should be cited as ``in press'' \cite{b5}. 
+% Capitalize only the first word in a paper title, except for proper nouns and 
+% element symbols.
+
+% For papers published in translation journals, please give the English 
+% citation first, followed by the original foreign-language citation \cite{b6}.
+
+
+
+
+% \vspace{12pt}
+% \color{red}
+% IEEE conference templates contain guidance text for composing and formatting conference papers. Please ensure that all template text is removed from your conference paper prior to submission to the conference. Failure to remove the template text from your paper may result in your paper not being published.
+
+\bibliographystyle{IEEEbib}
+\bibliography{icme2026references}
+
+\end{document}
