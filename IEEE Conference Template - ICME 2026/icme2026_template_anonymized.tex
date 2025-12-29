@@ -29,7 +29,7 @@
 \maketitle
 
 \begin{abstract}
-Channel prediction is a crucial task in various  communications applications. Although existing methods have employed large language models (LLMs) with robust modeling and generalization abilities to improve prediction performance, their practical use is limited by overlooking the underlying visual information of CSI. Recently, vision-language models (VLMs) have transformed multimodal learning by mapping images and text into a unified semantic space. In this paper, we investigate a VLM-based channel prediction framework (CPVLM), aiming to bridge CSI and image-text data. Specifically, we utilize inherent structural alignment between complex-valued CSI and visual data. Subsequently, we devise a coherence embedding method, enabling VLMs to interpret the entire CSI sequence as a coherent linguistic representation. Experimental results demonstrate that CPVLM outperforms the compared schemes and establishes a new direction for channel prediction.
+Channel prediction is a crucial task in various communications applications. Although existing methods have employed large language models (LLMs) with robust modeling and generalization abilities to improve prediction performance, their practical use is limited by overlooking the underlying visual information of CSI. Recently, vision-language models (VLMs) have transformed multimodal learning by mapping images and text into a unified semantic space. In this paper, we investigate a VLM-based channel prediction framework (CPVLM), aiming to bridge CSI and image-text data. Specifically, we utilize inherent structural alignment between complex-valued CSI and visual data. Subsequently, we devise a coherence embedding method, enabling VLMs to interpret the entire CSI sequence as a coherent linguistic representation. Experimental results demonstrate that CPVLM outperforms the compared schemes and establishes a new direction for channel prediction.
 \cite{cf-swintransformer}\cite{cp-cvcnn}\cite{vit}\cite{cp-ar}\cite{cp-kf}
 
 % This document is a model and instructions for \LaTeX.
@@ -82,7 +82,7 @@ However, the exploration of VLMs in channel prediction is still in its infancy. 
 % Our goal is to bridge this gap by leveraging VLMs to combine CSI data, visual, and textual modalities. These advances demonstrate that VLMs are not limited to native images and can reinforce their potential to serve as universal cross-modal learners across diverse scientific and data-intensive tasks.
 
 \begin{figure*}[tb]
-\centerline{\includegraphics{./pic/Overview1.pdf}}
+\centerline{\includegraphics{./pic/Framework.pdf}}
 % \includegraphics[width=\linewidth]{./pic/Overview.pdf}
 \caption{Overview of proposed method.}
 \label{fig:Overview}
@@ -131,9 +131,8 @@ The learnable queries interact with the visual embedding $\mathbf{F}_{ve}$ throu
 \tilde{\mathbf{Q}}^{(l)} &= \mathbf{Q}^{(l-1)} + \operatorname{MSA}\Big(\operatorname{LN}([\mathbf{Q}^{(l-1)}, \mathbf{P}])\Big),\\
 \hat{\mathbf{Q}}^{(l)} &= \tilde{\mathbf{Q}}^{(l)} + \operatorname{MCA}\Big(\operatorname{LN}(\tilde{\mathbf{Q}}^{(l)}), \mathbf{F}_{ve}, \mathbf{F}_{ve}\Big),\\
 % \mathbf{Q}^{(l)} &= \hat{\mathbf{Q}}^{(l)} + \operatorname{FFN}\Big( \operatorname{LN}(\hat{\mathbf{Q}}^{(l)}) \Big),\\
-\mathbf{Q}^{(l)} &= \hat{\mathbf{Q}}^{(l)} + \operatorname{max}( 0, \operatorname{LN}(\hat{\mathbf{Q}}^{(l)}) W_{1} + b_1 )W_2 + b_2,\\
-\mathbf{F}_{vv} &= \mathbf{Q}^{(6)},
-% Overview
+\mathbf{Q}^{(l)} &= \hat{\mathbf{Q}}^{(l)} + \operatorname{max}( 0, \operatorname{LN}(\hat{\mathbf{Q}}^{(l)}) W_{1} + b_1 )W_2 + b_2,
+% \mathbf{F}_{vv} &= \mathbf{Q}^{(6)},\\
 % \tilde{\mathbf{Q}}^{(l)} &= \operatorname{FFN}(\operatorname {MCA}( \operatorname {MSA}[\mathbf{Q}^{(l-1)}; \mathbf P])) + \mathbf{Q}^{(l-1)}\\
 \end{align}
 where $\operatorname{LN}(\cdot)$ denotes Layer Normalization, $\operatorname{MSA}(Q, K, V)$ represents the Multi-Head Self-Attention mechanism, $\operatorname{MCA}(Q, K, V)$ represents the Multi-Head Cross-Attention mechanism, and $\mathbf{Q}^{(n)} $ represents the output of the $n$-th Q-Former layer.
