@@ -1,30 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{cf-swintransformer}
-Jiaming Cheng, Wei Chen, Jialong Xu, Yiran Guo, Lun Li, and Bo~Ai,
-\newblock ``Swin transformer-based {CSI} feedback for massive {MIMO},''
-\newblock in {\em 23rd {IEEE} International Conference on Communication Technology, {ICCT} 2023, Wuxi, China, October 20-22, 2023}. 2023, pp. 809--814, {IEEE}.
-
-\bibitem{cp-cvcnn}
-Chi Wu, Xinping Yi, Yiming Zhu, Wenjin Wang, Li~You, and Xiqi Gao,
-\newblock ``Channel prediction in high-mobility massive {MIMO:} from spatio-temporal autoregression to deep learning,''
-\newblock {\em {IEEE} J. Sel. Areas Commun.}, vol. 39, no. 7, pp. 1915--1930, 2021.
-
-\bibitem{vit}
-Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, Jakob Uszkoreit, and Neil Houlsby,
-\newblock ``An image is worth 16x16 words: Transformers for image recognition at scale,''
-\newblock in {\em 9th International Conference on Learning Representations, {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. 2021, OpenReview.net.
-
-\bibitem{cp-ar}
-Kareem~E. Baddour and Norman~C. Beaulieu,
-\newblock ``Autoregressive modeling for fading channel simulation,''
-\newblock {\em {IEEE} Trans. Wirel. Commun.}, vol. 4, no. 4, pp. 1650--1662, 2005.
-
-\bibitem{cp-kf}
-Hwanjin Kim, Sucheol Kim, Hyeongtaek Lee, Chulhee Jang, Yongyun Choi, and Junil Choi,
-\newblock ``Massive {MIMO} channel prediction: Kalman filtering vs. machine learning,''
-\newblock {\em {IEEE} Trans. Commun.}, vol. 69, no. 1, pp. 518--528, 2021.
-
 \bibitem{DBLP:books/cu/TV2005}
 David Tse and Pramod Viswanath,
 \newblock {\em Fundamentals of Wireless Communication},
@@ -60,6 +35,36 @@ Lemayian~Joel Poncha and Jehad~M. Hamamreh,
 \newblock ``Recurrent neural network-based channel prediction in mmimo for enhanced performance in future wireless communication,''
 \newblock in {\em 2020 International Conference on UK-China Emerging Technologies, {UCET} 2020, Glasgow, United Kingdom, August 20-21, 2020}. 2020, pp. 1--4, {IEEE}.
 
+\bibitem{cp-transformer}
+Hao Jiang, Mingyao Cui, Derrick Wing~Kwan Ng, and Linglong Dai,
+\newblock ``Accurate channel prediction based on transformer: Making mobility negligible,''
+\newblock {\em {IEEE} J. Sel. Areas Commun.}, vol. 40, no. 9, pp. 2717--2732, 2022.
+
+\bibitem{LLM4CP}
+Boxun Liu, Xuanyu Liu, Shijian Gao, Xiang Cheng, and Liuqing Yang,
+\newblock ``{LLM4CP:} adapting large language models for channel prediction,''
+\newblock {\em J. Commun. Inf. Networks}, vol. 9, no. 2, pp. 113--125, 2024.
+
+\bibitem{cp-cvcnn}
+Chi Wu, Xinping Yi, Yiming Zhu, Wenjin Wang, Li~You, and Xiqi Gao,
+\newblock ``Channel prediction in high-mobility massive {MIMO:} from spatio-temporal autoregression to deep learning,''
+\newblock {\em {IEEE} J. Sel. Areas Commun.}, vol. 39, no. 7, pp. 1915--1930, 2021.
+
+\bibitem{cp-stem-gnn}
+Sharan Mourya, Pavan~Reddy Manne, SaiDhiraj Amuru, and Kiran~Kumar Kuchi,
+\newblock ``Spectral temporal graph neural network for massive {MIMO} {CSI} prediction,''
+\newblock {\em {IEEE} Wirel. Commun. Lett.}, vol. 13, no. 5, pp. 1399--1403, 2024.
+
+\bibitem{wifo}
+Boxun Liu, Shijian Gao, Xuanyu Liu, Xiang Cheng, and Liuqing Yang,
+\newblock ``Wifo: Wireless foundation model for channel prediction,''
+\newblock {\em Science China Information Sciences}, vol. 68, no. 6, pp. 162302, 2025.
+
+\bibitem{MAE}
+Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Doll{\'{a}}r, and Ross~B. Girshick,
+\newblock ``Masked autoencoders are scalable vision learners,''
+\newblock in {\em {IEEE/CVF} Conference on Computer Vision and Pattern Recognition, {CVPR} 2022, New Orleans, LA, USA, June 18-24, 2022}. 2022, pp. 15979--15988, {IEEE}.
+
 \bibitem{cp-cnn-1}
 Jie Wang, Ying Ding, Shujie Bian, Yang Peng, Miao Liu, and Guan Gui,
 \newblock ``{UL-CSI} data driven deep learning for predicting {DL-CSI} in cellular {FDD} systems,''
@@ -70,25 +75,10 @@ Jingxiang Yang, Liyan Li, and Min{-}Jian Zhao,
 \newblock ``A blind {CSI} prediction method based on deep learning for {V2I} millimeter-wave channel,''
 \newblock in {\em 28th {IEEE} International Conference on Network Protocols, {ICNP} 2020, Madrid, Spain, October 13-16, 2020}. 2020, pp. 1--6, {IEEE}.
 
-\bibitem{cp-transformer}
-Hao Jiang, Mingyao Cui, Derrick Wing~Kwan Ng, and Linglong Dai,
-\newblock ``Accurate channel prediction based on transformer: Making mobility negligible,''
-\newblock {\em {IEEE} J. Sel. Areas Commun.}, vol. 40, no. 9, pp. 2717--2732, 2022.
-
-\bibitem{TEST}
-Chenxi Sun, Hongyan Li, Yaliang Li, and Shenda Hong,
-\newblock ``{TEST:} text prototype aligned embedding to activate llm's ability for time series,''
-\newblock in {\em The Twelfth International Conference on Learning Representations, {ICLR} 2024, Vienna, Austria, May 7-11, 2024}. 2024, OpenReview.net.
-
 \bibitem{gpt3}
 Tom~B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert{-}Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel~M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario Amodei,
 \newblock ``Language models are few-shot learners,''
 \newblock {\em CoRR}, vol. abs/2005.14165, 2020.
-
-\bibitem{LLM4CP}
-Boxun Liu, Xuanyu Liu, Shijian Gao, Xiang Cheng, and Liuqing Yang,
-\newblock ``{LLM4CP:} adapting large language models for channel prediction,''
-\newblock {\em J. Commun. Inf. Networks}, vol. 9, no. 2, pp. 113--125, 2024.
 
 \bibitem{LLM4CE}
 Yiming Cui, Jiajia Guo, Chao{-}Kai Wen, Shi Jin, and En~Tong,
@@ -144,5 +134,21 @@ Jingzhe Shi, Qinwei Ma, Huan Ma, and Lei Li,
 Chen{-}Yu Lee, Saining Xie, Patrick~W. Gallagher, Zhengyou Zhang, and Zhuowen Tu,
 \newblock ``Deeply-supervised nets,''
 \newblock in {\em Proceedings of the Eighteenth International Conference on Artificial Intelligence and Statistics, {AISTATS} 2015, San Diego, California, USA, May 9-12, 2015}, Guy Lebanon and S.~V.~N. Vishwanathan, Eds. 2015, vol.~38 of {\em {JMLR} Workshop and Conference Proceedings}, JMLR.org.
+
+\bibitem{3gpp_38.843}
+{3rd Generation Partnership Project (3GPP)},
+\newblock ``{Study on Artificial Intelligence (AI)/Machine Learning (ML) for NR air interface},''
+\newblock Technical Report (TR) 38.843, 3rd Generation Partnership Project (3GPP), June 2024,
+\newblock Release 18.
+
+\bibitem{Adamw}
+Ilya Loshchilov and Frank Hutter,
+\newblock ``Decoupled weight decay regularization,''
+\newblock in {\em 7th International Conference on Learning Representations, {ICLR} 2019, New Orleans, LA, USA, May 6-9, 2019}. 2019, OpenReview.net.
+
+\bibitem{gpt2}
+Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever, et~al.,
+\newblock ``Language models are unsupervised multitask learners,''
+\newblock {\em OpenAI blog}, vol. 1, no. 8, pp. 9, 2019.
 
 \end{thebibliography}
