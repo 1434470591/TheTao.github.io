@@ -65,6 +65,21 @@ Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Doll{\'{a}}r, and Ross~B
 \newblock ``Masked autoencoders are scalable vision learners,''
 \newblock in {\em {IEEE/CVF} Conference on Computer Vision and Pattern Recognition, {CVPR} 2022, New Orleans, LA, USA, June 18-24, 2022}. 2022, pp. 15979--15988, {IEEE}.
 
+\bibitem{gpt3}
+Tom~B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert{-}Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel~M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario Amodei,
+\newblock ``Language models are few-shot learners,''
+\newblock in {\em Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual}, Hugo Larochelle, Marc'Aurelio Ranzato, Raia Hadsell, Maria{-}Florina Balcan, and Hsuan{-}Tien Lin, Eds., 2020.
+
+\bibitem{gpt2}
+Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever, et~al.,
+\newblock ``Language models are unsupervised multitask learners,''
+\newblock {\em OpenAI blog}, vol. 1, no. 8, pp. 9, 2019.
+
+\bibitem{LLM4CE}
+Yiming Cui, Jiajia Guo, Chao{-}Kai Wen, Shi Jin, and En~Tong,
+\newblock ``Exploring the potential of large language models for massive {MIMO} {CSI} feedback,''
+\newblock {\em CoRR}, vol. abs/2501.10630, 2025.
+
 \bibitem{cp-cnn-1}
 Jie Wang, Ying Ding, Shujie Bian, Yang Peng, Miao Liu, and Guan Gui,
 \newblock ``{UL-CSI} data driven deep learning for predicting {DL-CSI} in cellular {FDD} systems,''
@@ -74,16 +89,6 @@ Jie Wang, Ying Ding, Shujie Bian, Yang Peng, Miao Liu, and Guan Gui,
 Jingxiang Yang, Liyan Li, and Min{-}Jian Zhao,
 \newblock ``A blind {CSI} prediction method based on deep learning for {V2I} millimeter-wave channel,''
 \newblock in {\em 28th {IEEE} International Conference on Network Protocols, {ICNP} 2020, Madrid, Spain, October 13-16, 2020}. 2020, pp. 1--6, {IEEE}.
-
-\bibitem{gpt3}
-Tom~B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert{-}Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel~M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario Amodei,
-\newblock ``Language models are few-shot learners,''
-\newblock {\em CoRR}, vol. abs/2005.14165, 2020.
-
-\bibitem{LLM4CE}
-Yiming Cui, Jiajia Guo, Chao{-}Kai Wen, Shi Jin, and En~Tong,
-\newblock ``Exploring the potential of large language models for massive {MIMO} {CSI} feedback,''
-\newblock {\em CoRR}, vol. abs/2501.10630, 2025.
 
 \bibitem{clip}
 Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, Gretchen Krueger, and Ilya Sutskever,
@@ -105,6 +110,11 @@ Junnan Li, Dongxu Li, Caiming Xiong, and Steven C.~H. Hoi,
 \newblock ``{BLIP:} bootstrapping language-image pre-training for unified vision-language understanding and generation,''
 \newblock in {\em International Conference on Machine Learning, {ICML} 2022, 17-23 July 2022, Baltimore, Maryland, {USA}}, Kamalika Chaudhuri, Stefanie Jegelka, Le~Song, Csaba Szepesv{\'{a}}ri, Gang Niu, and Sivan Sabato, Eds. 2022, vol. 162 of {\em Proceedings of Machine Learning Research}, pp. 12888--12900, {PMLR}.
 
+\bibitem{llava}
+Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee,
+\newblock ``Visual instruction tuning,''
+\newblock in {\em Advances in Neural Information Processing Systems 36: Annual Conference on Neural Information Processing Systems 2023, NeurIPS 2023, New Orleans, LA, USA, December 10 - 16, 2023}, Alice Oh, Tristan Naumann, Amir Globerson, Kate Saenko, Moritz Hardt, and Sergey Levine, Eds., 2023.
+
 \bibitem{Time-VLM}
 Siru Zhong, Weilin Ruan, Ming Jin, Huan Li, Qingsong Wen, and Yuxuan Liang,
 \newblock ``Time-vlm: Exploring multimodal vision-language models for augmented time series forecasting,''
@@ -115,10 +125,19 @@ Tete Xiao, Mannat Singh, Eric Mintun, Trevor Darrell, Piotr Doll{\'{a}}r, and Ro
 \newblock ``Early convolutions help transformers see better,''
 \newblock in {\em Advances in Neural Information Processing Systems 34: Annual Conference on Neural Information Processing Systems 2021, NeurIPS 2021, December 6-14, 2021, virtual}, Marc'Aurelio Ranzato, Alina Beygelzimer, Yann~N. Dauphin, Percy Liang, and Jennifer~Wortman Vaughan, Eds., 2021, pp. 30392--30400.
 
+\bibitem{Transformer}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N. Gomez, Lukasz Kaiser, and Illia Polosukhin,
+\newblock ``Attention is all you need,'' 2023.
+
 \bibitem{norm}
 Taesung Kim, Jinhee Kim, Yunwon Tae, Cheonbok Park, Jang{-}Ho Choi, and Jaegul Choo,
 \newblock ``Reversible instance normalization for accurate time-series forecasting against distribution shift,''
 \newblock in {\em The Tenth International Conference on Learning Representations, {ICLR} 2022, Virtual Event, April 25-29, 2022}. 2022, OpenReview.net.
+
+\bibitem{TcEmbedding}
+Kai Ying, Yuanxun Liu, Disheng Xiao, Pengxuan Gao, Chao Wang, Lun Kun, and Danni Li,
+\newblock ``A data-driven channel prediction model with coherence time embedding,''
+\newblock in {\em {IEEE} Conference on Standards for Communications and Networking, {CSCN} 2024, Belgrade, Serbia, November 25-27, 2024}. 2024, pp. 320--321, {IEEE}.
 
 \bibitem{Vilt}
 Wonjae Kim, Bokyung Son, and Ildoo Kim,
@@ -145,10 +164,5 @@ Chen{-}Yu Lee, Saining Xie, Patrick~W. Gallagher, Zhengyou Zhang, and Zhuowen Tu
 Ilya Loshchilov and Frank Hutter,
 \newblock ``Decoupled weight decay regularization,''
 \newblock in {\em 7th International Conference on Learning Representations, {ICLR} 2019, New Orleans, LA, USA, May 6-9, 2019}. 2019, OpenReview.net.
-
-\bibitem{gpt2}
-Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever, et~al.,
-\newblock ``Language models are unsupervised multitask learners,''
-\newblock {\em OpenAI blog}, vol. 1, no. 8, pp. 9, 2019.
 
 \end{thebibliography}

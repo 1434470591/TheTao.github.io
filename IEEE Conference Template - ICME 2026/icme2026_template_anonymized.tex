@@ -36,7 +36,7 @@
 \maketitle
 
 \begin{abstract}
-Channel state information (CSI) prediction is a crucial technology for massive multiple-input multiple-output (MIMO) systems in future sixth-generation (6G) wireless communication networks. Existing advancements predominantly focus on spatial or temporal features in isolation, thereby failing to capture the inherent spatial-temporal correlations of high-dimensional CSI. In this paper, leveraging the superior capability of vision-language models (VLMs) in capturing spatial-temporal dependencies via multimodal representation learning, we propose a novel dual-guided VLM-based framework for spatial-temporal CSI prediction. The framework integrates a spatial-structural guidance block to extract geometric features from CSI data and a temporal-coherence guidance block to capture temporal continuity and physical consistency. Experimental results demonstrate that our proposed model outperforms the compared baseline methods in term of normalized mean squared error (NMSE) and squared generalized cosine similarity (SGCS), verifying its capability in capturing high-dimensional channel structures.
+Channel state information (CSI) prediction is a crucial technology in future sixth-generation (6G) wireless communication systems. Although existing deep learning-based methods have improved prediction performance, their practical use is limited by focusing on spatial or temporal features independently, thereby failing to capture the inherent spatial-temporal correlations within multi-dimensional structure of massive multiple-input multiple-output (MIMO) CSI. In this paper, leveraging the superior capability of vision-language models (VLMs) in exacting spatial-temporal dependencies via multimodal representation learning, we propose a novel dual-guided VLM-based framework for spatial-temporal CSI prediction. Specifically, the architecture comprises two modules: a spatial-structural guidance block to extract geometric features from CSI data and a temporal-coherence guidance block to capture temporal cohenrence and physical consistency.  Experimental results demonstrate that our proposed model outperforms the compared baseline methods in term of normalized mean squared error (NMSE) and squared generalized cosine similarity (SGCS), verifying its capability in capturing high-dimensional channel structures.
 
 % \cite{cp-cvcnn}\cite{vit}\cite{cp-ar}\cite{cp-kf}
 
@@ -46,15 +46,15 @@ Channel state information (CSI) prediction is a crucial technology for massive m
 \end{abstract}
 
 \begin{IEEEkeywords}
-Channel prediction, spatial-temporal modeling, vision-language models, multimodal learning, coherence embedding
+Channel prediction, vision-language models, channel state information, multimodal learning, spatial-temporal modeling
 \end{IEEEkeywords}
 
 \section{Introduction}
 \label{sec:intro}
-The accurate acquisition of channel state information (CSI) is pivotal in Massive Multiple-Input Multiple-Output(MIMO) communication systems~\cite{DBLP:books/cu/TV2005}, facilitating advanced transmission strategies, such as precoding, beamforming, and power allocation, thereby significantly improving system performance. 
+The accurate acquisition of channel state information (CSI) is pivotal in Massive Multiple-Input Multiple-Output(MIMO) communication systems~\cite{DBLP:books/cu/TV2005}, facilitating advanced transmission strategies, such as precoding, beamforming, and power allocatione. 
 Typically, as illustrated in Fig.~\ref{fig:data}, CSI is acquired via pilot symbols embedded in the transmission frame. However, in high-mobility scenarios, channel aging renders the channel information outdated, and increasing pilot density to mitigate this incurs severe overhead. Therefore, channel prediction, defined as inferring future channel information based on historical data, has become a key technology for enhancing system performance.
 
-Driven by recent breakthroughs in deep learning (DL), artificial intelligence (AI) has significantly improved performance in wireless communications, such as channel estimation~\cite{cf-CEFnet}, channel feedback~\cite{cf-bi-ImCsiNet}, signal detection~\cite{detection}, and beamforming~\cite{ECT-Net}, while also encompassing channel prediction. Recurrent Neural Networks(RNNs) and Long Short-Term Memory(LSTM) have demonstrated strong performance in channel prediction by effectively capturing dynamic temporal dependencies~\cite{cp-rnn-1, cp-rnn-2}. Studies on temporal feature modeling of CSI have been further advanced by Transformers~\cite{cp-transformer} and Large Language Model (LLM)-based approaches~\cite{LLM4CP}, which excel at modeling long-range sequential correlations. In parallel, researchs including complex-valued convolution neural network (CVCNN)~\cite{cp-cvcnn} and STEM GNN~\cite{cp-stem-gnn} have demonstrated superior capability in modeling the spatial structure of wireless channels. WiFo~\cite{wifo} innovatively applies masked autoencoders (MAE)~\cite{MAE} to reconstruction tasks, treating CSI matrices as visual images to extract deep spatial structural features. 
+Driven by the rapid evolution of deep learning (DL), artificial intelligence (AI) has significantly improved performance in wireless communications, such as channel estimation~\cite{cf-CEFnet}, channel feedback~\cite{cf-bi-ImCsiNet}, signal detection~\cite{detection}, and beamforming~\cite{ECT-Net}, while also encompassing channel prediction. Recurrent neural networks (RNNs) and long short-term memory (LSTM) have demonstrated strong performance in channel prediction by effectively capturing dynamic temporal dependencies~\cite{cp-rnn-1, cp-rnn-2}. Studies on temporal feature modeling of CSI have been further advanced by Transformers~\cite{cp-transformer} and Large Language Model (LLM)-based approaches~\cite{LLM4CP}, which excel at modeling long-range sequential correlations. In parallel, researchs including complex-valued convolution neural network (CVCNN)~\cite{cp-cvcnn} and STEM GNN~\cite{cp-stem-gnn} have demonstrated superior capability in modeling the spatial structure of wireless channels. WiFo~\cite{wifo} innovatively applies masked autoencoders (MAE)~\cite{MAE} to reconstruction tasks, treating CSI matrices as visual images to extract deep spatial structural features. 
 \begin{figure}[tb]
 \centerline{\includegraphics{./pic/Task.pdf}}
 % \includegraphics[width=\linewidth]{./pic/Task.pdf}
@@ -65,12 +65,12 @@ Driven by recent breakthroughs in deep learning (DL), artificial intelligence (A
 \begin{figure*}[tb]
 \centerline{\includegraphics{./pic/Framework.pdf}}
 % \includegraphics[width=\linewidth]{./pic/Overview.pdf}
-\caption{Overview of proposed method.}
+\caption{Overview of our proposed method.}
 \label{fig:Overview}
 \end{figure*}
 % Despite these achievements, prior research fundamentally model the spatial and temporal domains in isolation, ignoring the spatiotemporal evolution inherent in wireless channels. To bridge this gap, we introduce a novel framework that use a pre-trained vision-language model to enhance channel prediction by jointly integrating visual, textual, and CSI modalities. Leveraging the strong cross-modal alignment capabilities of vision-language models,  effectively embeds CSI data into the shared visual-linguistic semantic space, thereby enabling seamless integration across the three modalities. This unified representation fosters cross-modal interactions and allows each modality to contribute complementary information. Specifically, complex-valued CSI data—comprising in-phase (I) and quadrature (Q) components—can be naturally organized into a two-dimensional matrix across multiple time steps and subcarriers, exhibiting a structural resemblance to visual data. Moreover, motivated by the observation that model like~\cite{TEST} maps time-series features into the embedding space of large language models for unified semantic modeling, coherence embedding, aligning CSI embeddings space with VLMs embeddings space, is adopted.
 
-Despite these achievements, prior research fundamentally treats the spatial and temporal domains in isolation, ignoring the intrinsic spatiotemporal coupling of wireless channels. Specifically, temporal-centric approaches typically flatten high-dimensional CSI tensors into vectors, a process that inevitably obliterates the underlying spatial structure. Conversely, spatial-focused models, while preserving structural features, often struggle to maintain precision across long prediction windows due to limited temporal modeling capabilities. To bridge this gap, we introduce a dual-guided framework that leverages the pre-trained vision encoder and decoder-only LLMs to enhance spatial-temporal channel prediction. Our contributions are summarized as follows:
+Despite these achievements, prior research fundamentally treats the spatial and temporal domains in isolation, ignoring the intrinsic spatiotemporal coupling of wireless channels. Specifically, temporal-centric approaches typically flatten multi-dimensional CSI tensors into vectors, a process that inevitably obliterates the underlying spatial structure. Conversely, spatial-focused models, while preserving structural features, often struggle to maintain precision across long prediction windows due to limited temporal modeling capabilities. To bridge this gap, we introduce a dual-guided framework that leverages the pre-trained vision encoder and decoder-only LLMs to enhance spatial-temporal channel prediction. Our contributions are summarized as follows:
 
 \begin{itemize}
     \item We propose VLM-based framework to enhance spatial-temporal channel prediction by leveraging the robust representational capabilities of pre-trained vision encoder and decoder-only LLMs.
@@ -81,16 +81,17 @@ Despite these achievements, prior research fundamentally treats the spatial and 
 \section{Related work}
 \label{sec:rew}
 
-\subsection{Channel prediction (CP)}
-Deep learning-based strategies have been increasingly applied to CP.
-In particular, recurrent neural network, such as LSTM, excel in channel prediction by capturing dynamic temporal features~\cite{cp-rnn-1, cp-rnn-2}. Additionally, CNN-based approaches~\cite{cp-cnn-1, cp-cnn-2} employ convolutional neural networks(CNNs) with complex-valued convolutional layers to extract the spatial structure of CSI data. By facilitating parallel computation and paying attention to important patterns, Transformer-based models have significantly advanced channel prediction in challenging environments~\cite{cp-transformer}. Nevertheless, the lack of accurate modeling and robust generalization remains a key limitation of these models. More recently, inspired by the success of large language modals in fields of natural language processing (NLP)~\cite{gpt3}, some studies reflects their potential in CSI tasks. For instance, LLM4CP~\cite{LLM4CP} fine-tunes a pre-trained GPT-2 for CSI data and deploy a set of modules to boost model effectiveness. Similarly, method~\cite{LLM4CE} leverages the powerful noise removal capability of LLM to improve CSI reconstruction performance. However, these methods remain limited in their ability to align CSI data with the textual input required by LLMs and ignore the inherent structural similarities between CSI and computer vision (CV) data.
+\subsection{Channel prediction}
+Deep learning-based strategies have been increasingly applied to channel prediction. In particular, RNN and LSTM excel in channel prediction by capturing dynamic temporal features~\cite{cp-rnn-1, cp-rnn-2}. Additionally, by facilitating parallel computation, Transformer-based models have significantly advanced channel prediction in scenarios with long prediction windows~\cite{cp-transformer}. More recently, inspired by the success of large language modals in fields of natural language processing (NLP)~\cite{gpt3}, some studies reflects their potential in CSI tasks. For instance, LLM4CP~\cite{LLM4CP} fine-tunes a pre-trained GPT-2~\cite{gpt2} for CSI data and deploy a set of modules to boost model effectiveness. Similarly, method~\cite{LLM4CE} leverages the powerful noise removal capability of LLM to improve CSI reconstruction performance. 
+In parallel, CNN-based approaches~\cite{cp-cnn-1, cp-cnn-2} employ CNN with complex-valued convolutional layers to extract the spatial structure of CSI data. STEM GNN~\cite{cp-stem-gnn} utilizes its specialized graph convolutional architecture to jointly capture latent spatial correlations.
 
-\subsection{Vision-Language Models (VLMs)} 
+\subsection{Vision language models} 
 VLMs are fundamental to multimodal learning, enabling joint understanding of visual and textual modalities.
 CLIP~\cite{clip} and ALIGN~\cite{align} demonstrate that contrastive learning effectively aligns image and text embeddings in a shared latent space. 
-Studies such as Flamingo~\cite{flamingo} and BLIP~\cite{blip} further improve cross-modal interaction by incorporating cross-attention mechanism.
-Beyond conventional computer vision, recent research~\cite{Time-VLM} has begun to extended the application of VLMs to non-visual domains, transforming structured data into visual representations and enabling the reuse of pre-trained visual backbones.
-However, the exploration of VLMs in channel prediction is still in its infancy. These advances demonstrate that VLMs are not limited to native images and can serve as universal cross-modal learners across diverse and data-intensive tasks.
+Flamingo~\cite{flamingo} and BLIP~\cite{blip} further improve cross-modal interaction by incorporating cross-attention mechanism.
+In contrast, LLaVA \cite{llava} employ a lightweight interface by feeding visual features into the LLM via a single learnable linear projection layer.
+Beyond conventional computer vision, study~\cite{Time-VLM} has begun to extended the application of VLMs to non-visual domains, transforming structured data into visual representations and enabling the reuse of pre-trained visual backbones.
+However, the exploration of VLMs in channel prediction is still in its infancy. These advances demonstrate that VLMs are not limited to native images and can serve as universal spatial-temporal learners cross-modal representation learning.
 % Our goal is to bridge this gap by leveraging VLMs to combine CSI data, visual, and textual modalities. These advances demonstrate that VLMs are not limited to native images and can reinforce their potential to serve as universal cross-modal learners across diverse scientific and data-intensive tasks.
 
 
@@ -117,7 +118,7 @@ where $\widetilde{\mathcal{H}}_{t+\ell}$ denotes the predicted CSI at time index
 
 \subsection{Overall Architecture}
 
-The overall architecture of our proposed model has been illustrated in Fig.~\ref{fig:Overview}, employing a VLM-based framework with forzen vision encoder and frozen decoder-only LLM. In order to enhance the extraction of spatiotemporal CSI features by the VLM, we introduce a dual-guidance mechanism: the Spatial-Structural Guidance Block and the Temporal-Coherence Guidance Block. The following sections provide a detailed description of each block.
+The overall architecture of our proposed model has been illustrated in Fig.~\ref{fig:Overview}, employing a VLM-based framework with forzen vision encoder and frozen decoder-only LLM. In order to enhance the extraction of spatial-temporal CSI features by the VLM, we introduce a dual-guidance mechanism: the Spatial-Structural Guidance Block and the Temporal-Coherence Guidance Block. The following sections provide a detailed description of each block.
 % In order to improve the VLM’s extraction of CSI spatial-temporal features, we introduce a dual-guidance mechanism: spatial-structural guidance block and temporal-coherence guidance block. The following sections provide a detailed description of each block.
 
 % These two modules independently extract features, SSG block utilizes the \textit{AR(2+1)D-CVC} to factorize spatial and temporal convolutions to extract geometric features, and the prompt-aware Quering Transformer, or Q-Former, to extract visual features from a frozen visual encoder. TCG block introduces the Coherence Embedding, unlike standard positional encodings, to capture the temporal continuity and physical consistency of the CSI sequence. Ultimately, the outputs of these two modules are fed into a frozen LLM for generative forecasting.
@@ -126,7 +127,7 @@ The overall architecture of our proposed model has been illustrated in Fig.~\ref
    \caption{Coherence Segmentation}
    \label{alg:Coherence}
 \begin{algorithmic}[1]
-   \STATE {\bfseries Input:} Historical CSI sequence $\mathbf{X} \in \mathbb{C}^{T \times D}$, sensitivity threshold $\eta$ (Hyperparameter)
+   \STATE {\bfseries Input:} Historical CSI sequence $\mathbf{X} \in \mathbb{C}^{T \times D}$, sensitivity threshold $\eta$
    \STATE {\bfseries Output:} Coherence Segment Indices $\mathbf{S} \in \mathbb{Z}^{T}$
 
    \vspace{0.1cm}
@@ -157,17 +158,20 @@ The overall architecture of our proposed model has been illustrated in Fig.~\ref
 
 The objective of this block is to extract geometric features of CSI data and extract visual features from frozen vision encoder.
 Following research \cite{cnn-before-vit} that proving early convolutions improve Visual Transformer(ViT) optimization, we first process the historical CSI $\mathcal{X}_{\mathrm{his}}=\{\mathcal{H}_{t-P+1},\ldots,\mathcal{H}_{t}\}\in\mathbb{C}^{P\times N_c\times N_r\times N_t}$ through residual (2+1) dimensional complex-valued convolutional layers before feeding it into the pre-trained vision encoder. We utilize a complex-valued convolutional neural network(CVCNN) instead of whole CNN to explicitly preserve phase information and factorize the standard 3D convolutional kernel size $3 \times 3 \times 3$ into $3 \times 3 \times 1$ and $1 \times 1 \times 3$ to effectively capture the spatial correlations of $\mathcal{X}_{\mathrm{hist}}$ between the transmit antennas and receive antennas and the local temporal dynamics in the $P$ dimension. 
-% R(2+1)D \cite{R2+1D} factorizes the standard 3D convolutional filter into separate spatial and temporal components.ACNet \cite{ACNet} utilizing asymmetric convolution respectively.
-% The operation can be formulated as:
 
-We train Querying Transformer (Q-Former) from scratch. The input to the Q-Former contains a set of K learnable query embeddings $\mathbf{Q} \in \mathbb{R}^{K \times D_q}$ and the instruction-aware visual features from the output embeddings of the frozen vision encoder $\mathbf{F}_{ve}$. The query embeddings are initialized randomly and optimized during training. The instruction prompt $\mathbf{I}$ is designed to guide the Q-Former to extract visual features relevant to CSI prediction tasks.
-Through $L=6$ stacked layers, the queries interact with the visual features to compress spatial information into instruction-aware visual representations. Each layer consists of a Multi-Head Self-Attention(MHSA) module, a Multi-Head Cross-Attention(MHCA) module, and a Feed-Forward Network(FFN). The update process for the $l$-th layer is formulated as:
+We train Querying Transformer (Q-Former) from scratch. The input to the Q-Former contains a set of K learnable query embeddings $\mathbf{Q} \in \mathbb{R}^{K \times D_q}$, an instruction prompt $\mathbf{I}$, designed to guide the Q-Former to extract visual features relevant to CSI prediction tasks, and the visual features from the output embeddings of the frozen vision encoder $\mathbf{F}_{ve}$. The query embeddings are initialized randomly and optimized during training. Through $L=6$ stacked layers, the queries $\mathbf{Q}$ interact with the instruction prompt $\mathbf{I}$ through self-attention layers, and
+interact with visual features $\mathbf{F}_{ve}$ to compress spatial information into instruction-aware visual representations through multi-head cross-attention (MHCA) layers. The fundamental operation of this layers is the Scaled Dot-Product Attention \cite{Transformer}, which computes the correlation weight between the query($Q$) and key($K$) and then uses this weight to perform a weighted aggregation of the value ($V$) as follows:
+\begin{equation} 
+    \operatorname{Attention}(Q, K, V) = \operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V, 
+\end{equation}
+Then a fully connected feed-forward network (FFN), consists of two linear transformations with a ReLU activation in between, is employed 
+To this end, the operations within each $l$-th block are executed as follows:
 \begin{align}
 \tilde{\mathbf{Q}}^{(l)} &= \mathbf{Q}^{(l-1)} + \operatorname{MHSA}\Big(\operatorname{LN}([\mathbf{Q}^{(l-1)}, \mathbf{I}])\Big),\\
 \hat{\mathbf{Q}}^{(l)} &= \tilde{\mathbf{Q}}^{(l)} + \operatorname{MHCA}\Big(\operatorname{LN}(\tilde{\mathbf{Q}}^{(l)}), \mathbf{F}_{ve}, \mathbf{F}_{ve}\Big),\\
-\mathbf{Q}^{(l)} &= \hat{\mathbf{Q}}^{(l)} + \operatorname{FFN}\Big(\operatorname{LN}(\hat{\mathbf{Q}}^{(l)})\Big),
+\mathbf{Q}^{(l)} &= \hat{\mathbf{Q}}^{(l)} + \operatorname{max}\Big(0, \operatorname{LN}(\hat{\mathbf{Q}}^{(l)})W_1 + b_1\Big)W_2 + b_2,
 \end{align}
-where $\operatorname{LN}(\cdot)$ denotes Layer Normalization, $\mathbf{I}$ denotes the instruction prompt, $\operatorname{FFN}$ consists of two linear layers with a ReLU activation: $\operatorname{FFN}(x)=\max(0, x\mathbf{W}_1 + \mathbf{b}_1)\mathbf{W}_2 + \mathbf{b}_2$, and $\mathbf{Q}^{(l)} $ represents the output of the $l$-th Q-Former layer.
+where $\operatorname{LN}(\cdot)$ denotes Layer Normalization, $[\cdot, \cdot]$ denotes the concatenation operator along the sequence dimension, $\mathbf{I}$ denotes the instruction prompt, $\mathbf{Q}^{(l)} $ represents the output of the $l$-th Q-Former layer.
 
 % \begin{equation}
 %     \mathbf{F}_{vv} = \operatorname{Q-Former}(\mathbf{Q}, \mathbf{F}_{ve}, prompt)
@@ -216,7 +220,7 @@ where $\operatorname{LN}(\cdot)$ denotes Layer Normalization, $\mathbf{I}$ denot
 \subsection{Temporal-coherence guidance block}
 To be fed into frozen LLM model, we first reshape historical CSI $\mathcal {X}_{his}$ into dense real-valued form $\mathcal X_{rearrange}\in\mathbb{R}^{P\times (2 \cdot N_c \cdot N_r \cdot N_t)}$, where the real and imaginary parts of each complex entry are decomposed and concatenated, and then apply instance normalization \cite{norm} to standardize each sample to zero mean and unit variance.
 
-We introduce the Coherence Embedding as the primary mechanism of this block, motivated by the theoretical channel correlation properties. The calculation method for coherence segmentation $\mathbf{S \in \mathbb{Z}^{T}}$ can be summarized by algorithm~\ref{alg:Coherence}.
+We introduce the Coherence Embedding as the primary mechanism of this block, motivated by the theoretical channel correlation properties~\cite{TcEmbedding}. The calculation method for coherence segmentation $\mathbf{S \in \mathbb{Z}^{T}}$ can be summarized by algorithm~\ref{alg:Coherence}.
 % inspired by \cite{TcEmbedding}
 We calculate the coherence embedding $\mathbf{E}_{coh} \in \mathbb{R}^{P \times D_e}$ by mapping the coherence segment indices $\mathbf{S}$ through a learnable embedding layer $\boldsymbol{Embedding}(\cdot)$, where $D_e$ denotes the coherence embedding dimension.
 
@@ -345,7 +349,7 @@ Average & - & \textbf{0.131} & \textbf{0.752} & 0.417 & 0.506 & 0.831 & 0.254 & 
 
 \subsection{Result}
 The prediction window $P$ is set within \{2, 4, 8\}, while the look-back window size $L$ is set at 12 for all datasets. We calculate the NMSE and SGCS of baseline and our proposed model and show the results in TABLE~\ref{tab:results}. It can be observed that our proposed consistently outperforms most baseline methods across different speed scenarios and prediction lengths. Specifically, in low-mobility scenarios with user speed in 30 km/h, we achieves significant improvements in prediction window 8, increasing SGCS by up to 10.5\% compared to the second-best method. In dataset with user speed in 60 km/h and compelx-mobility scenarios(x km/h), our model maintains robust performance, but in high-moblity scenario(120 km/h).
-This is because temporal models excel at capturing long-term evolutionary trends, while spatial models are adept at extracting instantaneous structural features. By leveraging a joint spatiotemporal modeling mechanism, our model ensures both robustness in high-dynamic settings and reconstruction precision in complex spatial environments, thereby achieving superior generalization.
+This is because temporal models excel at capturing long-term evolutionary trends, while spatial models are adept at extracting instantaneous structural features. By leveraging a joint spatial-temporal modeling mechanism, our model ensures both robustness in high-dynamic settings and reconstruction precision in complex spatial environments, thereby achieving superior generalization.
 
 \begin{table}[htbp]
 \centering
@@ -388,14 +392,14 @@ w/o CE \& R(2+1)DCVCNN & 0.329 & 0.610 \\
 To verify the effectiveness of the key components in our proposed framework, specifically the Coherence Embedding and the R(2+1)D CVCNN module, we conducted an ablation study on the mixed-velocity dataset, as summarized in Table~\ref{tab:ablation_wo}
 The most significant performance degradation is observed when the R(2+1)D CVCNN module is removed. 
 % As shown in the third row, the NMSE deteriorates drastically from 0.116 to 0.324, and SGCS drops from 0.785 to 0.613. 
-indicating that the R(2+1)D CVCNN serves as the fundamental backbone of our system, playing a decisive role in extracting local spatiotemporal features from the CSI sequence. Without this module, the model fails to capture the intricate physical structures of the channel, leading to poor reconstruction capability. The omission of the Coherence Embedding leads to a noticeable decline in performance, with NMSE rising to 0.123. Although this impact is less drastic than removing the CNN backbone, it highlights the embedding's role in enforcing temporal alignment. By explicitly modeling the continuity of channel evolution, this component is essential for fine-tuning prediction accuracy. Furthermore, the full model's superior performance across all metrics—compared to the variant lacking both components—demonstrates that integrating spatiotemporal feature extraction (via R(2+1)D) with temporal coherence modeling is vital for achieving precise channel prediction
+indicating that the R(2+1)D CVCNN serves as the fundamental backbone of our system, playing a decisive role in extracting local spatiotemporal features from the CSI sequence. Without this module, the model fails to capture the intricate physical structures of the channel, leading to poor reconstruction capability. The omission of the Coherence Embedding leads to a noticeable decline in performance, with NMSE rising to 0.123. Although this impact is less drastic than removing the CNN backbone, it highlights the embedding's role in enforcing temporal alignment. By explicitly modeling the continuity of channel evolution, this component is essential for fine-tuning prediction accuracy. Furthermore, the full model's superior performance across all metrics—compared to the variant lacking both components—demonstrates that integrating spatial-temporal feature extraction (via R(2+1)D) with temporal coherence modeling is vital for achieving precise channel prediction
 
 As shown in Table~\ref{tab:ablation_hyper}, we evaluate the NMSE performance under varying threshold values $\eta \in \{0.01, 0.05, 0.10, 0.20\}$.
-We observe that the performance peaks at $\eta=0.05$, achieving the best NMSE of 0.113, 0.190, and 0.164 for the 30km/h, 120km/h, and Mixed datasets, respectively. Both lower ($\eta=0.01$) and higher ($\eta=0.20$) thresholds lead to increased prediction errors. Therefore, $\eta=0.05$ is selected as the optimal hyperparameter to balance feature retention and noise suppression.
+We observe that the performance peaks at $\eta=0.05$, and both lower ($\eta=0.01$) and higher ($\eta=0.20$) thresholds lead to increased prediction errors. Therefore, $\eta=0.05$ is selected as the optimal hyperparameter to balance feature retention and noise suppression.
 
 \section{Conclusion}
 \label{sec:conv}
-In this work, we addressed the limitation of decoupled spatial and temporal modeling in existing studies by proposing a unified VLM-based framework. Through the synergistic integration of the Spatial-Structural and Temporal-Coherence Guidance Blocks, we successfully aligned the high-dimensional CSI features with the semantic reasoning capabilities of LLMs. Our empirical results demonstrate that this cross-modal alignment leads to significant gains in prediction accuracy and structural fidelity, particularly in complex, high-mobility scenarios. These outcomes highlight the promising potential of VLM-based model in wireless communication applications.
+In this work, we addressed the limitation of decoupled spatial and temporal modeling in existing studies by proposing a dual-guided VLM-based framework for spatial-temporal channel prediction. Through the integration of the Spatial-Structural and Temporal-Coherence Guidance Blocks, we ingeste multi-dimensional CSI snapshots in both original tensor and flattened formats. Our empirical results demonstrate that this cross-modal alignment leads to significant gains in prediction accuracy, particularly in complex-mobility scenarios. These outcomes highlight the promising potential of VLM-based model in wireless communication applications.
 
 % \section{Introduction}
 % % \label{sec:intro}
