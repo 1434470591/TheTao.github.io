@@ -1,7 +1,7 @@
 PWD d:/WUBT/Documents/GitHub/TheTao.github.io/IEEE Conference Template - ICME 2026
 INPUT d:/Program Files/texlive/2025/texmf.cnf
 INPUT d:/Program Files/texlive/2025/texmf-dist/web2c/texmf.cnf
-INPUT d:/Program Files/texlive/2025/texmf-var/web2c/pdftex/latex.fmt
+INPUT d:/Program Files/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
 INPUT d:/WUBT/Documents/GitHub/TheTao.github.io/IEEE Conference Template - ICME 2026/icme2026_template_anonymized.tex
 OUTPUT icme2026_template_anonymized.log
 INPUT ./IEEEtran.cls
@@ -79,9 +79,9 @@ INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/dvips.def
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/dvips.def
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/dvips.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/base/textcomp.sty
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/base/textcomp.sty
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/tools/array.sty
@@ -109,9 +109,9 @@ INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsy
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.def
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.def
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-postscript.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
@@ -208,14 +208,125 @@ INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tik
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
 INPUT d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
-INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT ./icme2026_template_anonymized.aux
 INPUT ./icme2026_template_anonymized.aux
 INPUT icme2026_template_anonymized.aux
 OUTPUT icme2026_template_anonymized.aux
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmrc7t.tfm
 INPUT ./pic/Task.pdf
 INPUT ./pic/Task.pdf
 INPUT ./pic/Task.pdf
 INPUT ./pic/Task.pdf
+OUTPUT icme2026_template_anonymized.pdf
+INPUT ./pic/Task.pdf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmbi7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmbi8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmrc7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
+INPUT ./pic/Framework.pdf
+INPUT ./pic/Framework.pdf
+INPUT ./pic/Framework.pdf
+INPUT ./pic/Framework.pdf
+INPUT ./pic/Framework.pdf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmrc7t.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmrc7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/psnfss/omsptm.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/psnfss/omsptm.fd
+INPUT d:/Program Files/texlive/2025/texmf-dist/tex/latex/psnfss/omsptm.fd
+INPUT ./icme2026_template_anonymized.bbl
+INPUT ./icme2026_template_anonymized.bbl
+INPUT icme2026_template_anonymized.bbl
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
+INPUT icme2026_template_anonymized.aux
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
+INPUT d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb

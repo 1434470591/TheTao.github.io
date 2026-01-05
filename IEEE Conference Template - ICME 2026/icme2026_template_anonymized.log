@@ -1,8 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=latex 2025.12.30)  5 JAN 2026 03:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.30)  5 JAN 2026 03:43
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**"d:/WUBT/Documents/GitHub/TheTao.github.io/IEEE Conference Template - ICME 2026/icme2026_template_anonymized.tex"
+**"d:/WUBT/Documents/GitHub/TheTao.github.io/IEEE Conference Template - ICME 2026/icme2026_template_anonymized"
 (d:/WUBT/Documents/GitHub/TheTao.github.io/IEEE Conference Template - ICME 2026/icme2026_template_anonymized.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -22,7 +23,7 @@ LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 50
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 -- Using 8.5in x 11in (letter) paper.
--- Using DVI output.
+-- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen144
 -- This is a 10 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen145
@@ -202,9 +203,9 @@ Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: dvips.def on input line 106.
- (d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/dvips.def
-File: dvips.def 2022/09/22 v3.1e Graphics/color driver for dvips
+Package graphics Info: Driver file: pdftex.def on input line 106.
+ (d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen174
 \Gin@req@width=\dimen175
@@ -260,16 +261,15 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
  (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
-Driver file for pgf: pgfsys-dvips.def
- (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.def
-File: pgfsys-dvips.def 2023-01-15 v3.1.10 (3.1.10)
- (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-postscript.def
-File: pgfsys-common-postscript.def 2023-01-15 v3.1.10 (3.1.10)
-\pgf@objectcount=\count298
+Driver file for pgf: pgfsys-pdftex.def
+ (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+ (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count299
-\pgfsyssoftpath@bigbuffer@items=\count300
+\pgfsyssoftpath@smallbuffer@items=\count298
+\pgfsyssoftpath@bigbuffer@items=\count299
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -277,9 +277,10 @@ Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
  (d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: dvips.def on input line 274.
+Package xcolor Info: Driver file: pdftex.def on input line 274.
  (d:/Program Files/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
@@ -291,13 +292,13 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen190
-\pgfmath@count=\count301
+\pgfmath@count=\count300
 \pgfmath@box=\box59
 \pgfmath@toks=\toks32
 \pgfmath@stack@operand=\toks33
 \pgfmath@stack@operation=\toks34
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count302
+\c@pgfmathroundto@lastzeros=\count301
 )) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@picminx=\dimen191
@@ -327,7 +328,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box60
 \pgf@hbox=\box61
 \pgf@layerbox@main=\box62
-\pgf@picture@serial@count=\count303
+\pgf@picture@serial@count=\count302
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen265
@@ -348,8 +349,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen270
-\pgf@sys@shading@range@num=\count304
-\pgf@shadingcount=\count305
+\pgf@sys@shading@range@num=\count303
+\pgf@shadingcount=\count304
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
@@ -384,7 +385,7 @@ Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count306
+\pgf@plot@mark@count=\count305
 \pgfplotmarksize=\dimen275
 )
 \tikz@lastx=\dimen276
@@ -399,17 +400,17 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box66
 \tikz@tempbox=\box67
 \tikz@tempbox@bg=\box68
-\tikztreelevel=\count307
-\tikznumberofchildren=\count308
-\tikznumberofcurrentchild=\count309
-\tikz@fig@count=\count310
+\tikztreelevel=\count306
+\tikznumberofchildren=\count307
+\tikznumberofcurrentchild=\count308
+\tikz@fig@count=\count309
  (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count311
-\pgfmatrixcurrentcolumn=\count312
-\pgf@matrix@numberofcolumns=\count313
+\pgfmatrixcurrentrow=\count310
+\pgfmatrixcurrentcolumn=\count311
+\pgf@matrix@numberofcolumns=\count312
 )
-\tikz@expandcount=\count314
+\tikz@expandcount=\count313
  (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/url/url.sty
@@ -419,18 +420,18 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
  (d:/Program Files/texlive/2025/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count315
+\c@float@type=\count314
 \float@exts=\toks37
 \float@box=\box69
 \@float@everytoks=\toks38
 \@floatcapt=\box70
 )
 \@float@every@algorithm=\toks39
-\c@algorithm=\count316
+\c@algorithm=\count315
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen284
-\c@nlinenum=\count317
+\c@nlinenum=\count316
 \TeXr@lab=\toks40
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
@@ -444,33 +445,29 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen292
 \cmidrulekern=\dimen293
 \defaultaddspace=\dimen294
-\@cmidla=\count318
-\@cmidlb=\count319
+\@cmidla=\count317
+\@cmidlb=\count318
 \@aboverulesep=\dimen295
 \@belowrulesep=\dimen296
-\@thisruleclass=\count320
-\@lastruleclass=\count321
+\@thisruleclass=\count319
+\@lastruleclass=\count320
 \@thisrulewidth=\dimen297
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip59
-\multirow@cntb=\count322
+\multirow@cntb=\count321
 \multirow@dima=\skip60
 \bigstrutjot=\dimen298
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (d:/Program Files/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
-File: l3backend-dvips.def 2024-05-08 L3 backend support: dvips
+) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count322
 \l__pdf_internal_box=\box71
-\l__pdf_backend_content_box=\box72
-\l__pdf_backend_model_box=\box73
-\g__pdf_backend_annotation_int=\count323
-\g__pdf_backend_link_int=\count324
-\g__pdf_backend_link_sf_int=\count325
 ) (./icme2026_template_anonymized.aux)
 \openout1 = `icme2026_template_anonymized.aux'.
 
@@ -485,4 +482,134 @@ LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font 
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+
+-- Lines per column: 56 (exact).
+(d:/Program Files/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count323
+\scratchdimen=\dimen299
+\scratchbox=\box72
+\nofMPsegments=\count324
+\nofMParguments=\count325
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count326
+\MPscratchDim=\dimen300
+\MPnumerator=\count327
+\makeMPintoPDFobject=\count328
+\everyMPtoPDFconversion=\toks42
+) (d:/Program Files/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (d:/Program Files/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+
+<./pic/Task.pdf, id=4, 271.0125pt x 188.6247pt>
+File: ./pic/Task.pdf Graphic file (type pdf)
+<use ./pic/Task.pdf>
+Package pdftex.def Info: ./pic/Task.pdf  used on input line 65.
+(pdftex.def)             Requested size: 271.01183pt x 188.62422pt.
+
+Underfull \vbox (badness 1132) has occurred while \output is active []
+
+
+
+[1{d:/Program Files/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{d:/Program Files/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+ <./pic/Task.pdf>]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 74.
+ (d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 74.
+ (d:/Program Files/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+<./pic/Framework.pdf, id=32, 432.65637pt x 222.8325pt>
+File: ./pic/Framework.pdf Graphic file (type pdf)
+<use ./pic/Framework.pdf>
+Package pdftex.def Info: ./pic/Framework.pdf  used on input line 120.
+(pdftex.def)             Requested size: 432.65532pt x 222.83195pt.
+
+
+[2]
+
+
+Underfull \hbox (badness 5403) in paragraph at lines 244--245
+[]\OT1/ptm/m/n/10 We first re-shape orig-i-nal his-tor-i-cal in-put $\OMS/cmsy/m/n/10 X[] 2
+ []
+
+
+Underfull \hbox (badness 4981) in paragraph at lines 244--245
+\U/msb/m/n/10 C[]$ \OT1/ptm/m/n/10 into a dense real-valued rep-re-sen-ta-tion
+ []
+
+
+
+[3 <./pic/Framework.pdf>]
+
+
+Overfull \vbox (4.14787pt too high) detected at line 348
+ []
+
+
+Underfull \hbox (badness 2556) in paragraph at lines 355--361
+ \OT1/ptm/m/it/10 3) Eval-u-a-tion Met-rics: [][] \OT1/ptm/m/n/10 We em-ploy nor-mal-ized mean
+ []
+
+
+
+[4]
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 371.
+ (d:/Program Files/texlive/2025/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 371.
+
+
+
+
+[5] (./icme2026_template_anonymized.bbl
+
+)
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+
+
+[6] (./icme2026_template_anonymized.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 14965 strings out of 473190
+ 299460 string characters out of 5712650
+ 698891 words of memory out of 5000000
+ 37930 multiletter control sequences out of 15000+600000
+ 604118 words of font info for 123 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 84i,13n,91p,1555b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/Program Files/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on icme2026_template_anonymized.pdf (6 pages, 2089817 bytes).
+PDF statistics:
+ 205 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+
